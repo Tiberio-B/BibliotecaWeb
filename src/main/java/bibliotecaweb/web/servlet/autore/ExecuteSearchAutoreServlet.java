@@ -26,9 +26,9 @@ public class ExecuteSearchAutoreServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String nome = request.getParameter("nome");
+		String cognome = request.getParameter("cognome");
 		
-		Autore autore = new Autore();
-		autore.setNome(nome);
+		Autore autore = new Autore(nome, cognome);
 		List<Autore> autori = null;
 		try {
 			autori = MyServiceFactory.getAutoreServiceInstance().cerca(autore);

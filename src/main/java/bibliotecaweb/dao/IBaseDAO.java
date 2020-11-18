@@ -15,6 +15,8 @@ public interface IBaseDAO<T> {
 	public void insert(T o) throws Exception;
 
 	public void delete(T o) throws Exception;
+	
+	public List<T> find(T instance);
 
 	// questo mi serve per l'injection
 	public void setEntityManager(EntityManager entityManager);

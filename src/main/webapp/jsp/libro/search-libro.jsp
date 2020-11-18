@@ -58,7 +58,7 @@
 						<div class="form-group col-md-6">
 							
 								<label>Autore</label>
-								<select class="browser-default custom-select" name="autore">
+								<select class="browser-default custom-select" name="autoreId">
 								
 									<option value="-1">Seleziona un autore...</option>
 										

@@ -46,6 +46,10 @@ public class Autore {
 		this(nome, cognome, ddn, new HashSet<>(0));
 	}
 
+	public Autore(String nome, String cognome) {
+		this(nome, cognome, null, new HashSet<>(0));
+	}
+
 	public Long getId() {
 		return id;
 	}

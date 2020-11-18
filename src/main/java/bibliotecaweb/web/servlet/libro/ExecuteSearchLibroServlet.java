@@ -9,7 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import bibliotecaweb.model.Autore;
 import bibliotecaweb.model.Libro;
+import bibliotecaweb.model.Libro.Genere;
 import bibliotecaweb.service.MyServiceFactory;
 
 @WebServlet("/ExecuteSearchLibroServlet")
@@ -25,26 +27,27 @@ public class ExecuteSearchLibroServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		// Long idAut = !idAutParam.isEmpty() ? Long.parseLong(idAutParam) : -1;
-				
-		// Libro libro = new Libro(codice, descrizione, prezzo);
+		String titolo = request.getParameter("titolo");
+		String trama = request.getParameter("trama");
+		Libro.Genere genere = Genere.valueOf(request.getParameter("genere"));
+		Long autoreId = Long.parseLong(request.getParameter("autoreId"));
 		
-		// se specificata, setta la autore
-//		if (!(idAut < 0)) {
-//			Autore autore = null;
-//			try {
-//				autore = MyServiceFactory.getAutoreServiceInstance().carica(idAut);
-//				libro.setAutore(autore);
-//			} catch (Exception e) {
-//				e.printStackTrace();
-//			}
-//		}
+		Autore autore = null;
+		if (autoreId != -1) {
+			try {
+				autore = MyServiceFactory.getAutoreServiceInstance().carica(autoreId);
+				request.setAttribute("autore", autore);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		Libro libro = new Libro(titolo, trama, genere, autore);
 		
 		List<Libro> libri = null;
-		
 		try {
-			// libri = MyServiceFactory.getLibroServiceInstance().cerca(libro);
-			request.setAttribute("listaLibriAttribute", libri);
+			libri = MyServiceFactory.getLibroServiceInstance().cerca(libro);
+			request.setAttribute("listaLibri", libri);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

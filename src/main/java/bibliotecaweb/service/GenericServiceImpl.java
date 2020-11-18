@@ -96,7 +96,15 @@ public abstract class GenericServiceImpl<T> implements GenericService<T> {
 
 	@Override
 	public List<T> cerca(T instance) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		EntityManager entityManager = EntityManagerUtil.getEntityManager();
+		try {
+			tDAO.setEntityManager(entityManager);
+			return tDAO.find(instance);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		} finally {
+			entityManager.close();
+		}
 	}
 }

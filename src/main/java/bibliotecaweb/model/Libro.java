@@ -23,12 +23,12 @@ public class Libro {
 	private Long id;
 	@Column(name = "titolo")
 	private String titolo;
+	@Column(name = "trama")
+	private String trama;
+	
 	// @Column(name = "genere")
 	@Enumerated(EnumType.STRING)
 	private Genere genere;
-	@Column(name = "trama")
-	private String trama;
-
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "autore_id")
@@ -36,16 +36,20 @@ public class Libro {
 	
 	public Libro() {}
 	
-	public Libro(Long id, String titolo, Genere genere, String trama, Autore autore) {
+	public Libro(Long id, String titolo, String trama, Genere genere, Autore autore) {
 		this.id = id;
 		this.titolo = titolo;
-		this.genere = genere;
 		this.trama = trama;
+		this.genere = genere;
 		this.autore = autore;
 	}
 	
-	public Libro(String titolo, Genere genere, String trama) {
-		this(null, titolo, genere, trama, null);
+	public Libro(String titolo, String trama, Genere genere) {
+		this(null, titolo, trama, genere, null);
+	}
+
+	public Libro(String titolo, String trama, Genere genere, Autore autore) {
+		this(null, titolo, trama, genere, autore);
 	}
 
 	public Long getId() {
