@@ -46,7 +46,7 @@
 								<label>Genere</label>
 								<select class="browser-default custom-select" name="genere">
 								
-									<option value="-1">Seleziona un genere...</option>
+									<option value="">Seleziona un genere...</option>
 										
 										<c:forEach var="genere" items="${requestScope.generi}">
 											<option value="${genere.name()}">${genere.name()}</option>

@@ -27,8 +27,10 @@ public class ExecuteSearchLibroServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String titolo = request.getParameter("titolo");
-		String trama = request.getParameter("trama");
+		String titoloInput = request.getParameter("titolo");
+		String titolo = titoloInput.isEmpty() ? null : titoloInput;
+		String tramaInput = request.getParameter("trama");
+		String trama = tramaInput.isEmpty() ? null : tramaInput;
 		Libro.Genere genere = Genere.valueOf(request.getParameter("genere"));
 		Long autoreId = Long.parseLong(request.getParameter("autoreId"));
 		
