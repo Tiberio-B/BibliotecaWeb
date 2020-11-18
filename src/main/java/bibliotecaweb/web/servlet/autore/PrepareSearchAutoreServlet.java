@@ -23,14 +23,6 @@ public class PrepareSearchAutoreServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		List<Autore> autori = null;
-		try {
-			autori = MyServiceFactory.getAutoreServiceInstance().elenca();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		request.setAttribute("listaAutori", autori);
-
 		request.getRequestDispatcher("jsp/autore/search-autore.jsp").forward(request, response);
 
 	}

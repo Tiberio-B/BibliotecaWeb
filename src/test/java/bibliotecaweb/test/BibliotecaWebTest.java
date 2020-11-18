@@ -132,15 +132,15 @@ public class BibliotecaWebTest {
 		
 		try {
 		
-			init(numLibri, numUtenti, numAutori); // inizializza tutte le tabelle
+			// init(numLibri, numUtenti, numAutori); // inizializza tutte le tabelle
 			
-			initRuoli();
+			// initRuoli();
 			
-			doScrittureLibri(numScrittureLibri); // collega Autori e Libri
+			// doScrittureLibri(numScrittureLibri); // collega Autori e Libri
 			
-			doAssegnazioniRuoli(numAssegnazioniRuoli); // collega Utenti e Ruoli
+			// doAssegnazioniRuoli(numAssegnazioniRuoli); // collega Utenti e Ruoli
 			
-			// authentication("Ususalu", "password");
+			authentication("Epenefa", "password");
 			
 			// feedback(); // stampa a schermo tutti i recuts nel DB
 			

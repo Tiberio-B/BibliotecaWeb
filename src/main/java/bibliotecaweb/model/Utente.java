@@ -129,6 +129,12 @@ public class Utente {
 		return false;
 	}
 	
+	@Override
+	public String toString() {
+		return "Utente [id=" + id + ", nome=" + nome + ", cognome=" + cognome + ", username="
+				+ username + ", password=" + password + ", stato=" + stato + "]";
+	}
+
 	public enum Stato {
 		ATTIVO, NON_ATTIVO;
 	}

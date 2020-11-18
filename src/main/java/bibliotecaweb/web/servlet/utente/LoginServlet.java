@@ -23,13 +23,13 @@ public class LoginServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		// se l'utente � gi� loggato, torna in homepage
+		// se l'utente e' gia' loggato, torna in homepage
 		if(request.getSession().getAttribute("utente") != null ) {
 			request.getRequestDispatcher("jsp/home.jsp").forward(request, response);
 			return;
 		}
 		
-		request.getRequestDispatcher("jsp/utente/login.jsp").forward(request, response);
+		request.getRequestDispatcher("index.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -42,7 +42,7 @@ public class LoginServlet extends HttpServlet {
 		// se la validazione fallisce torno in pagina
 		if (username.isEmpty() || password.isEmpty()) {
 			request.setAttribute("errorMessage", "Inserire username e password per effettuare l'accesso");
-			request.getRequestDispatcher("jsp/utente/login.jsp").forward(request, response);
+			request.getRequestDispatcher("jsp/utente/index.jsp").forward(request, response);
 			return;
 		}
 		
@@ -55,7 +55,7 @@ public class LoginServlet extends HttpServlet {
 		
 		if (utente == null) {
 			request.setAttribute("errorMessage", "L'username o la password sono errati");
-			request.getRequestDispatcher("jsp/utente/login.jsp").forward(request, response);
+			request.getRequestDispatcher("jsp/utente/index.jsp").forward(request, response);
 			return;
 		}
 		HttpSession sess = request.getSession();

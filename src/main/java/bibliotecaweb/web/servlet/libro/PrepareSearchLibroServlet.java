@@ -1,6 +1,8 @@
 package bibliotecaweb.web.servlet.libro;
 
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -10,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import bibliotecaweb.model.Autore;
+import bibliotecaweb.model.Libro;
 import bibliotecaweb.service.MyServiceFactory;
 
 @WebServlet("/PrepareSearchLibroServlet")
@@ -29,7 +32,13 @@ public class PrepareSearchLibroServlet extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		request.setAttribute("listaAutori", autori);
+		// Collections.sort(autori);
+		request.setAttribute("autori", autori);
+		
+		
+		Libro.Genere[] generi = Libro.Genere.values();
+		Arrays.sort(generi);
+		request.setAttribute("generi", generi);
 
 		request.getRequestDispatcher("jsp/libro/search-libro.jsp").forward(request, response);
 

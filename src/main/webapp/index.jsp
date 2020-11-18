@@ -1,61 +1,58 @@
 <!doctype html>
 <html lang="it">
-  <head>
-    
-    <jsp:include page="./jsp/header.jsp" />
-    
-    <!-- Custom styles for this template -->
+<head>
+	<jsp:include page="./jsp/header.jsp" />
+	<title>Pagina di Login</title>
+	
+	<!-- style per le pagine diverse dalla index -->
     <link href="./assets/css/global.css" rel="stylesheet">
-    <style type="text/css">
-    	body {
-		  padding-top: 3.5rem;
-		}	
-    </style>
     
-    <title>BibliotecaWeb</title>
-  </head>
-  <body>
-  
-	<jsp:include page="./jsp/navbar.jsp"></jsp:include>
-  
-  
-	<main role="main">
+</head>
+<body>
+	
+	<main role="main" class="container">
+	
+	<jsp:include page="./jsp/error-message.jsp" />
+		
+		<div class='card'>
+		    <div class='card-header'>
+		        <h5>Effettua il Login</h5> 
+		    </div>
+		    <div class='card-body'>
 
-	  <!-- Main jumbotron for a primary marketing message or call to action -->
-	  <div class="jumbotron" >
-	    <div class="container">
-	      <h1 class="display-3">Benvenuto su BibliotecaWeb</h1>
-	      <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
-	      <p><a class="btn btn-primary btn-lg" href="LoginServlet" role="button">Accedi &raquo;</a></p>
-	    </div>
-	  </div>
-	  
-	  <div class="container">
-	    <!-- Example row of columns -->
-	    <div class="row">
-	      <div class="col-md-4">
-	        <h2>Heading</h2>
-	        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-	        <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
-	      </div>
-	      <div class="col-md-4">
-	        <h2>Heading</h2>
-	        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-	        <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
-	      </div>
-	      <div class="col-md-4">
-	        <h2>Heading</h2>
-	        <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-	        <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
-	      </div>
-	    </div>
+
+					<form method="post" action="LoginServlet" novalidate="novalidate">
+					
+						<div class="form-row">
+							<div class="form-group col-md-6">
+								<label>Username</label>
+								<input type="text" name="username" id="username" class="form-control" placeholder="Inserire username" required>
+							</div>
+							
+							<div class="form-group col-md-6">
+								<label>Password</label>
+								<input type="password" name="password" id="password" class="form-control" placeholder="Inserire password" required>
+							</div>
+						</div>
+							
+						<button type="submit" name="submit" value="submit" id="submit" class="btn btn-primary">Accedi</button>
+					
+
+					</form>
+			<!-- end card-body -->			   
+		    </div>
+		    
+		    <div class='card-footer'>
+		        <a href="index.jsp" class='btn btn-outline-secondary' style='width:100px'>
+		            <i class='fa fa-chevron-left'></i> Indietro
+		        </a>
+		    </div>
+		</div>	
 	
-	    <hr>
 	
-	  </div> <!-- /container -->
-	
+	<!-- end container -->	
 	</main>
-	
 	<jsp:include page="./jsp/footer.jsp" />
-  </body>
+	
+</body>
 </html>

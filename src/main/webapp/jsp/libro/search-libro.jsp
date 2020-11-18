@@ -1,8 +1,8 @@
 <!doctype html>
 <html lang="it">
 <head>
-<jsp:include page="../header.jsp" />
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<jsp:include page="../header.jsp" />
 <title>Cerca un Libro</title>
 
 <!-- style per le pagine diverse dalla index -->
@@ -27,35 +27,43 @@
 
 					<div class="form-row">
 						<div class="form-group col-md-6">
-							<label>Codice</label> <input
-								type="text" name="codice" id="codice" class="form-control"
-								placeholder="Inserire il codice" required>
+							<label>Titolo</label> <input
+								type="text" name="titolo" id="titolo" class="form-control"
+								placeholder="Inserire il titolo" required>
 						</div>
 
 						<div class="form-group col-md-6">
-							<label>Descrizione</label> <input
-								type="text" name="descrizione" id="descrizione"
-								class="form-control" placeholder="Inserire la descrizione"
+							<label>Trama</label> <input
+								type="text" name="trama" id="trama"
+								class="form-control" placeholder="Inserire la trama"
 								required>
 						</div>
 					</div>
 
 					<div class="form-row">
-						<div class="form-group col-md-3">
-							<label>Prezzo</label> <input
-								type="number" class="form-control" name="prezzo" id="prezzo"
-								placeholder="Inserire prezzo" required>
+						<div class="form-group col-md-6">
+							
+								<label>Genere</label>
+								<select class="browser-default custom-select" name="genere">
+								
+									<option value="-1">Seleziona un genere...</option>
+										
+										<c:forEach var="genere" items="${requestScope.generi}">
+											<option value="${genere.name()}">${genere.name()}</option>
+										</c:forEach>
+								</select>
+							
 						</div>
 
 						<div class="form-group col-md-6">
 							
 								<label>Autore</label>
-								<select class="browser-default custom-select" name="idAut">
+								<select class="browser-default custom-select" name="autore">
 								
-									<option value="-1">Seleziona una autore...</option>
+									<option value="-1">Seleziona un autore...</option>
 										
-										<c:forEach var="autore" items="${requestScope.listaAutori}">
-											<option value="${autore.id}">${autore.nome}</option>
+										<c:forEach var="autore" items="${requestScope.autori}">
+											<option value="${autore.id}">${autore.cognome} ${autore.nome}</option>
 										</c:forEach>
 								</select>
 							

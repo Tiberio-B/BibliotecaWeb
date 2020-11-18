@@ -48,7 +48,9 @@ public class UtenteServiceImpl extends GenericServiceImpl<Utente> implements Ute
 		try {
 			UtenteDAO dao = (UtenteDAO) getDAO();
 			dao.setEntityManager(entityManager);
-			return dao.find(username, password, stato).get(0);
+			List<Utente> ret = dao.find(username, password, stato);
+			if (ret.isEmpty()) { return null; }
+			else { return ret.get(0); }
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;

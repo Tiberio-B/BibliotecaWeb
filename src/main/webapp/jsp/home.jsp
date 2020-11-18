@@ -28,6 +28,7 @@
 	      <br/><br/>
 	    <p><a class="btn btn-primary btn-lg" href="PrepareSearchLibroServlet" role="button">Cerca un Libro &raquo;</a></p>
 	    <p><a class="btn btn-primary btn-lg" href="PrepareSearchAutoreServlet" role="button">Cerca un Autore &raquo;</a></p>
+	    <p><a class="btn btn-primary btn-lg" href="PrepareSearchUtenteServlet" role="button">Gestione Utente &raquo;</a></p>
 	    </div>    
 	  </div>
 	

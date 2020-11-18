@@ -9,7 +9,6 @@
     
 </head>
 <body>
-	<jsp:include page="../navbar.jsp" />
 	
 	<main role="main" class="container">
 	

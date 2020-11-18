@@ -4,6 +4,8 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
 	version="2.0" xmlns="http://java.sun.com/xml/ns/persistence">
 	<persistence-unit name="bibliotecaweb_unit" transaction-type="RESOURCE_LOCAL">
+		<class>bibliotecaweb.model.Libro</class>
+		<class>bibliotecaweb.model.Autore</class>
 		<class>bibliotecaweb.model.Utente</class>
 		<class>bibliotecaweb.model.Ruolo</class>
 		<properties>
@@ -31,7 +33,7 @@
 			
 			<property name="hibernate.show_sql" value="false"/> <!-- mostra le istruzioni sql -->
 			<!-- create-drop,create,update,validate -->
-			<property name="hibernate.hbm2ddl.auto" value="create"/>
+			<property name="hibernate.hbm2ddl.auto" value=""/>
 		</properties>
 	</persistence-unit>
 </persistence>
