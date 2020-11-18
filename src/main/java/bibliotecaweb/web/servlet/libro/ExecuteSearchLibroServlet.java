@@ -31,7 +31,8 @@ public class ExecuteSearchLibroServlet extends HttpServlet {
 		String titolo = titoloInput.isEmpty() ? null : titoloInput;
 		String tramaInput = request.getParameter("trama");
 		String trama = tramaInput.isEmpty() ? null : tramaInput;
-		Libro.Genere genere = Genere.valueOf(request.getParameter("genere"));
+		String genereInput = request.getParameter("genere");
+		Libro.Genere genere = genereInput.isEmpty() ? null : Genere.valueOf(genereInput);
 		Long autoreId = Long.parseLong(request.getParameter("autoreId"));
 		
 		Autore autore = null;

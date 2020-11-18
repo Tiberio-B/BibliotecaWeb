@@ -1,58 +1,68 @@
 <!doctype html>
 <html lang="it">
-<head>
-	<jsp:include page="./jsp/header.jsp" />
-	<title>Pagina di Login</title>
+	<head>
+	  <!-- Required meta tags -->
+	  <meta charset="utf-8">
+	  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	
-	<!-- style per le pagine diverse dalla index -->
-    <link href="./assets/css/global.css" rel="stylesheet">
-    
-</head>
-<body>
+	  <!-- Bootstrap CSS -->
+	  <link rel="stylesheet" href="./assets/css/bootstrap.min.css" >
 	
-	<main role="main" class="container">
+	  <title>Accedi</title>
+	  
+	  <!-- Favicons -->
+	<link rel="apple-touch-icon" href="./assets/img/favicons/apple-touch-icon.png" sizes="180x180">
+	<link rel="icon" href="./assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
+	<link rel="icon" href="./assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
+	<link rel="manifest" href="./assets/img/favicons/manifest.json">
+	<link rel="mask-icon" href="./assets/img/favicons/safari-pinned-tab.svg" color="#563d7c">
+	<link rel="icon" href="./assets/img/favicons/favicon.ico">
+	<meta name="msapplication-config" content="./assets/img/favicons/browserconfig.xml">
+	<meta name="theme-color" content="#563d7c">
 	
-	<jsp:include page="./jsp/error-message.jsp" />
+	
+	   <style>
+	    .bd-placeholder-img {
+	      font-size: 1.125rem;
+	      text-anchor: middle;
+	      -webkit-user-select: none;
+	      -moz-user-select: none;
+	      -ms-user-select: none;
+	      user-select: none;
+	    }
+	
+	    @media (min-width: 768px) {
+	      .bd-placeholder-img-lg {
+	        font-size: 3.5rem;
+	      }
+	    }
+	  </style>
+	  
+	  <!-- Custom styles for this template -->
+	  <link href="./assets/css/signin.css" rel="stylesheet">
+	</head>
+	<body class="text-center">
 		
-		<div class='card'>
-		    <div class='card-header'>
-		        <h5>Effettua il Login</h5> 
-		    </div>
-		    <div class='card-body'>
-
-
-					<form method="post" action="LoginServlet" novalidate="novalidate">
-					
-						<div class="form-row">
-							<div class="form-group col-md-6">
-								<label>Username</label>
-								<input type="text" name="username" id="username" class="form-control" placeholder="Inserire username" required>
-							</div>
-							
-							<div class="form-group col-md-6">
-								<label>Password</label>
-								<input type="password" name="password" id="password" class="form-control" placeholder="Inserire password" required>
-							</div>
-						</div>
-							
-						<button type="submit" name="submit" value="submit" id="submit" class="btn btn-primary">Accedi</button>
-					
-
-					</form>
-			<!-- end card-body -->			   
-		    </div>
-		    
-		    <div class='card-footer'>
-		        <a href="index.jsp" class='btn btn-outline-secondary' style='width:100px'>
-		            <i class='fa fa-chevron-left'></i> Indietro
-		        </a>
-		    </div>
-		</div>	
-	
-	
-	<!-- end container -->	
-	</main>
-	<jsp:include page="./jsp/footer.jsp" />
-	
-</body>
+	   	<form class="form-signin" action="LoginServlet" method="post">
+	   	
+		   	<div class="alert alert-danger alert-dismissible fade show ${errorMessage==null?'d-none': ''}" role="alert">
+			  ${errorMessage}
+			</div>
+			
+			
+		  <img class="mb-4" src="./assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+		  <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+		  <label for="inputUsername" class="sr-only">Username</label>
+		  <input type="text" id="username" name="username" class="form-control" placeholder="Username" required autofocus>
+		  <label for="inputPassword" class="sr-only">Password</label>
+		  <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
+		  <div class="checkbox mb-3">
+		    <label>
+		      <input type="checkbox" value="remember-me"> Remember me
+		    </label>
+		  </div>
+		  <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+		  <p class="mt-5 mb-3 text-muted">&copy; 2017-2020</p>
+		</form>
+	</body>
 </html>

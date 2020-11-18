@@ -42,7 +42,7 @@ public class LoginServlet extends HttpServlet {
 		// se la validazione fallisce torno in pagina
 		if (username.isEmpty() || password.isEmpty()) {
 			request.setAttribute("errorMessage", "Inserire username e password per effettuare l'accesso");
-			request.getRequestDispatcher("jsp/utente/index.jsp").forward(request, response);
+			request.getRequestDispatcher("index.jsp").forward(request, response);
 			return;
 		}
 		
@@ -55,7 +55,7 @@ public class LoginServlet extends HttpServlet {
 		
 		if (utente == null) {
 			request.setAttribute("errorMessage", "L'username o la password sono errati");
-			request.getRequestDispatcher("jsp/utente/index.jsp").forward(request, response);
+			request.getRequestDispatcher("index.jsp").forward(request, response);
 			return;
 		}
 		HttpSession sess = request.getSession();

@@ -59,6 +59,16 @@ public class Utente {
 		this(null, null, username, password, new HashSet<>(0), Stato.NON_ATTIVO);
 	}
 
+	public Utente(String nome, String cognome, String username, Stato stato, Ruolo ruolo) {
+		Set<Ruolo> ruoli = new HashSet<>(0);
+		ruoli.add(ruolo);
+		this.nome = nome;
+		this.cognome = cognome;
+		this.username = username;
+		this.ruoli = ruoli;
+		this.stato = stato;
+	}
+
 	public Long getId() {
 		return id;
 	}

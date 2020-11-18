@@ -50,7 +50,7 @@
 							<label>Stato Utente</label> <select
 								class="browser-default custom-select" name="stato">
 
-								<option value="-1">Seleziona uno stato utente...</option>
+								<option value="">Seleziona uno stato utente...</option>
 
 								<c:forEach var="stato" items="${requestScope.stati}">
 									<option value="${stato.name()}">${stato.name()}</option>
@@ -62,7 +62,7 @@
 							<label>Ruolo Utente</label> <select
 								class="browser-default custom-select" name="ruolo">
 
-								<option value="-1">Seleziona un ruolo utente...</option>
+								<option value="">Seleziona un ruolo utente...</option>
 
 								<c:forEach var="ruolo" items="${requestScope.ruoli}">
 									<option value="${ruolo.name()}">${ruolo.name()}</option>

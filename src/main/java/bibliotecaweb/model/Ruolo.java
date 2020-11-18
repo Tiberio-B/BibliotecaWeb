@@ -28,6 +28,10 @@ public class Ruolo {
 		this.descrizione = descrizione;
 	}
 	
+	public Ruolo(Codice codiceRuolo) {
+		this(codiceRuolo, null);
+	}
+
 	public Long getId() {
 		return id;
 	}
