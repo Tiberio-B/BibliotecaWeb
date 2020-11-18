@@ -1,7 +1,10 @@
 package bibliotecaweb.web.servlet.utente;
 
 import java.io.IOException;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,12 +12,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import bibliotecaweb.model.Autore;
-import bibliotecaweb.model.Libro;
 import bibliotecaweb.model.Ruolo;
 import bibliotecaweb.model.Ruolo.Codice;
 import bibliotecaweb.model.Utente;
-import bibliotecaweb.model.Libro.Genere;
 import bibliotecaweb.model.Utente.Stato;
 import bibliotecaweb.service.MyServiceFactory;
 
@@ -39,11 +39,17 @@ public class ExecuteSearchUtenteServlet extends HttpServlet {
 		String username = usernameInput.isEmpty() ? null : usernameInput;
 		String statoInput = request.getParameter("stato");
 		Utente.Stato stato = statoInput.isEmpty() ? null : Stato.valueOf(statoInput);
-		String ruoloInput = request.getParameter("ruolo");
-		Ruolo.Codice codiceRuolo = ruoloInput.isEmpty() ? null : Codice.valueOf(ruoloInput);
 		
-		Ruolo ruolo = new Ruolo(codiceRuolo);
-		Utente utente = new Utente(nome, cognome, username, stato, ruolo);
+		String[] ruoliIdInput = request.getParameterValues("ruoliId");
+		
+		Set<Ruolo> ruoli = null;
+		try {
+			ruoli = MyServiceFactory.getRuoloServiceInstance().carica(ruoliIdInput);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		Utente utente = new Utente(nome, cognome, username, stato, ruoli);
 		
 		List<Utente> utenti = null;
 		try {

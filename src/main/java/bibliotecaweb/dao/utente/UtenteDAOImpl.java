@@ -30,13 +30,13 @@ public class UtenteDAOImpl extends GenericDAOImpl<Utente> implements UtenteDAO {
 
 	@Override
 	public List<Utente> find(Utente instance) {
-		String base = "from Utente u ";
+		String base = "SELECT DISTINCT u FROM Utente u ";
 		Set<Ruolo> ruoli = instance.getRuoli();
 		boolean ruoliNotNull = ruoli != null && !ruoli.isEmpty();
 		if (ruoliNotNull) {
-			base += "join fetch Ruolo r ";
+			base += "JOIN u.ruoli r ";
 		}
-		base += "where 1=1";
+		base += "WHERE 1=1 ";
 		Long id = instance.getId();
 		String nome = instance.getNome();
 		String cognome = instance.getCognome();
@@ -48,23 +48,25 @@ public class UtenteDAOImpl extends GenericDAOImpl<Utente> implements UtenteDAO {
 		boolean usernameNotNull = username != null;
 		boolean statoNotNull = stato != null;
 		if (idNotNull) {
-			base += "and u.id = :id ";
+			base += "AND u.id = :id ";
 		}
 		if (nomeNotNull) {
-			base += "and u.nome = :nome ";
+			base += "AND u.nome = :nome ";
 		}
 		if (cognomeNotNull) {
-			base += "and u.cognome = :cognome ";
+			base += "AND u.cognome = :cognome ";
 		}
 		if (usernameNotNull) {
-			base += "and u.username = :username ";
+			base += "AND u.username = :username ";
 		}
 		if (statoNotNull) {
-			base += "and u.stato = :stato ";
+			base += "AND u.stato = :stato ";
 		}
 		if (ruoliNotNull) {
-			for (Ruolo ruolo : ruoli) {
-				base += "and r.id = :ruoloId ";
+			for (int i=0; i < ruoli.size(); i++) {
+				base += "AND ?";
+				base+= String.valueOf(1+i);
+				base += " MEMBER OF u.ruoli ";
 			}
 		}
 		TypedQuery<Utente> query = entityManager.createQuery(base, Utente.class);
@@ -80,9 +82,12 @@ public class UtenteDAOImpl extends GenericDAOImpl<Utente> implements UtenteDAO {
 		if (usernameNotNull) {
 			query.setParameter("username", username);
 		}
+		if (statoNotNull) {
+			query.setParameter("stato", stato);
+		}
 		if (ruoliNotNull) {
-			for (Ruolo ruolo : ruoli) {
-				query.setParameter("ruoloId", ruolo.getId());
+			for (int i=0; i < ruoli.size(); i++) {
+				query.setParameter(1+i, ruoli.iterator().next());
 			}
 		}
 	    return query.getResultList();

@@ -38,7 +38,13 @@ public class PrepareSearchUtenteServlet extends HttpServlet {
 		
 		Utente.Stato[] stati = Utente.Stato.values();
 		request.setAttribute("stati", stati);
-		Ruolo.Codice[] ruoli = Ruolo.Codice.values();
+		
+		List<Ruolo> ruoli = null;
+		try {
+			ruoli = MyServiceFactory.getRuoloServiceInstance().elenca();
+		}  catch (Exception e) {
+			e.printStackTrace();
+		}
 		request.setAttribute("ruoli", ruoli);
 		
 		request.getRequestDispatcher("jsp/utente/search-utente.jsp").forward(request, response);

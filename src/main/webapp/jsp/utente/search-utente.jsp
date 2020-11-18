@@ -59,15 +59,13 @@
 						</div>
 
 						<div class="form-group col-md-6">
-							<label>Ruolo Utente</label> <select
-								class="browser-default custom-select" name="ruolo">
-
-								<option value="">Seleziona un ruolo utente...</option>
+							<label>Ruolo Utente</label> 
 
 								<c:forEach var="ruolo" items="${requestScope.ruoli}">
-									<option value="${ruolo.name()}">${ruolo.name()}</option>
+									<br/>
+									<input type="checkbox" id="ruoliId" name="ruoliId" value="${ruolo.id}">
+									<label for="ruoliId"> ${ruolo.codice.name()}</label>
 								</c:forEach>
-							</select>
 						</div>
 
 					</div>

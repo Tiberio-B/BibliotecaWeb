@@ -1,12 +1,14 @@
 package bibliotecaweb.model;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -14,6 +16,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 
 import bibliotecaweb.service.MyServiceFactory;
 
@@ -33,7 +38,7 @@ public class Utente {
 	@Column(name = "password")
 	private String password;
 
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "utente_ruolo", joinColumns = @JoinColumn(name = "utente_id", referencedColumnName = "ID"), inverseJoinColumns = @JoinColumn(name = "ruolo_id", referencedColumnName = "ID"))
 	private Set<Ruolo> ruoli = new HashSet<>(0);
 	
@@ -59,14 +64,8 @@ public class Utente {
 		this(null, null, username, password, new HashSet<>(0), Stato.NON_ATTIVO);
 	}
 
-	public Utente(String nome, String cognome, String username, Stato stato, Ruolo ruolo) {
-		Set<Ruolo> ruoli = new HashSet<>(0);
-		ruoli.add(ruolo);
-		this.nome = nome;
-		this.cognome = cognome;
-		this.username = username;
-		this.ruoli = ruoli;
-		this.stato = stato;
+	public Utente(String nome, String cognome, String username, Stato stato, Set<Ruolo> ruoli) {
+		this(nome, cognome, username, null, ruoli, stato);
 	}
 
 	public Long getId() {
