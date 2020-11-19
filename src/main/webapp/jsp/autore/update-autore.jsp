@@ -32,7 +32,7 @@
 
 					<c:set var="old" scope="request" value="${autoreOld}" />
 
-					<input type="hidden" name="idOld" id="idOld" class="form-control"
+					<input type="hidden" name="idAut" id="idAut" class="form-control"
 						value="${old.id}">
 
 					<div class="form-row">
@@ -40,6 +40,12 @@
 							<label>Nome <span class="text-danger">*</span></label> <input
 								type="text" name="nome" id="nome" class="form-control"
 								placeholder="Inserire il nome" value="${old.nome}" required>
+						</div>
+					
+						<div class="form-group col-md-6">
+							<label>Cogome <span class="text-danger">*</span></label> <input
+								type="text" name="cognome" id="cognome" class="form-control"
+								placeholder="Inserire il cognome" value="${old.cognome}" required>
 						</div>
 					</div>
 
@@ -51,7 +57,7 @@
 			</div>
 
 			<div class='card-footer'>
-				<a href="ListAutoriServlet" class='btn btn-outline-secondary'
+				<a href="BackToAutoriServlet" class='btn btn-outline-secondary'
 					style='width: 100px'> <i class='fa fa-chevron-left'></i>
 					Indietro
 				</a> <a href="PrepareDeleteAutoreServlet?idAut=${old.id}"

@@ -11,19 +11,20 @@ import javax.servlet.http.HttpServletResponse;
 import bibliotecaweb.model.Libro;
 import bibliotecaweb.service.MyServiceFactory;
 import bibliotecaweb.service.libro.LibroService;
+import bibliotecaweb.web.servlet.MyAbstractServlet;
 
-@WebServlet("/DeleteLibroServlet")
-public class DeleteLibroServlet extends HttpServlet {
+@WebServlet("/ExecuteDeleteLibroServlet")
+public class ExecuteDeleteLibroServlet extends MyAbstractServlet {
 	private static final long serialVersionUID = 1L;
 
-	public DeleteLibroServlet() {
+	public ExecuteDeleteLibroServlet() {
 		super();
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		long id = Long.valueOf(request.getParameter("idParam"));
+		Long id = validateID(request, "idParam");
 		
 		Libro libro = new Libro();
 		libro.setId(id);
@@ -31,13 +32,13 @@ public class DeleteLibroServlet extends HttpServlet {
 		try {
 			LibroService service = MyServiceFactory.getLibroServiceInstance();
 			service.rimuovi(libro);
-			request.setAttribute("listaLibriAttribute", service.elenca());
+			request.setAttribute("listaLibri", service.elenca());
 			request.setAttribute("successMessage", "Operazione effettuata con successo");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
-		request.getRequestDispatcher("jsp/libro/libri.jsp").forward(request, response);
+		request.getRequestDispatcher("BackToLibriServlet").forward(request, response);
 
 	}
 

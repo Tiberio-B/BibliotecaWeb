@@ -48,7 +48,7 @@
 								
 									<option value="">Seleziona un genere...</option>
 										
-										<c:forEach var="genere" items="${requestScope.generi}">
+										<c:forEach var="genere" items="${sessionScope.listaGeneri}">
 											<option value="${genere.name()}">${genere.name()}</option>
 										</c:forEach>
 								</select>
@@ -62,7 +62,7 @@
 								
 									<option value="-1">Seleziona un autore...</option>
 										
-										<c:forEach var="autore" items="${requestScope.autori}">
+										<c:forEach var="autore" items="${sessionScope.listaAutori}">
 											<option value="${autore.id}">${autore.cognome} ${autore.nome}</option>
 										</c:forEach>
 								</select>

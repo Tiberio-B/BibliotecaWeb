@@ -10,9 +10,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import bibliotecaweb.model.Libro;
 import bibliotecaweb.service.MyServiceFactory;
+import bibliotecaweb.web.servlet.MyAbstractServlet;
 
 @WebServlet("/PrepareDeleteLibroServlet")
-public class PrepareDeleteLibroServlet extends HttpServlet {
+public class PrepareDeleteLibroServlet extends MyAbstractServlet {
 	private static final long serialVersionUID = 1L;
 
 	public PrepareDeleteLibroServlet() {
@@ -22,14 +23,14 @@ public class PrepareDeleteLibroServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		long id = Long.valueOf(request.getParameter("idParam"));
+		Long id = validateID(request, "idParam");
 		Libro libro = null;
 		try {
 			libro = MyServiceFactory.getLibroServiceInstance().carica(id);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		request.setAttribute("libroAttr", libro);
+		request.setAttribute("libro", libro);
 
 		request.getRequestDispatcher("jsp/libro/delete-libro.jsp").forward(request, response);
 

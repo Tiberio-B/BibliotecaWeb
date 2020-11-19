@@ -53,18 +53,21 @@
 							<td><c:out value="${item.id}" /></td>
 							<td><c:out value="${item.nome}" /></td>
 							<td><c:out value="${item.cognome}" /></td>
+							<td><c:out value="${item.username}" /></td>
 							<td><c:out value="${item.stato}" /></td>
-							<c:forEach var="ruolo" items="${item.getRuoli()}">
-								<td><c:out value="${ruolo.codice}" /></td>
+							<td>
+								<c:forEach var="ruolo" items="${item.getRuoli()}">
+								<c:out value="${ruolo.codice}" />
 							</c:forEach>
+							</td>
 							<td><a class="btn  btn-sm btn-outline-secondary"
-								href="VisualizzaLibroServlet?idParam=${item.id}">Visualizza</a>
+								href="VisualizzaUtenteServlet?idParam=${item.id}">Visualizza</a>
 								<a
 								class="btn  btn-sm btn-outline-primary ml-2 mr-2 ${sessionScope.cannotUpdate?'disabled':''}"
-								href="PrepareUpdateLibroServlet?idParam=${item.id}"
+								href="PrepareUpdateUtenteServlet?idParam=${item.id}"
 								aria-disabled="${sessionScope.cannotUpdate}">Modifica</a> <a
 								class="btn btn-outline-danger btn-sm ${sessionScope.cannotDelete?'disabled':''}"
-								href="PrepareDeleteLibroServlet?idParam=${item.id}"
+								href="PrepareDeleteUtenteServlet?idParam=${item.id}"
 								aria-disabled="${sessionScope.cannotDelete}">Rimuovi</a></td>
 						</tr>
 					</c:forEach>

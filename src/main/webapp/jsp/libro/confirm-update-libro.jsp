@@ -4,7 +4,7 @@
 <html lang="it">
 <head>
 <jsp:include page="../header.jsp" />
-<title>Modifica elemento</title>
+<title>Modifica Libro</title>
 
 <!-- style per le pagine diverse dalla index -->
 <link href="./assets/css/global.css" rel="stylesheet">
@@ -20,79 +20,79 @@
 
 			<div class='card'>
 				<div class='card-header'>
-					Sei sicuro di voler modificare in questo modo l'elemento?
+					Sei sicuro di voler modificare in questo modo il libro?
 				</div>
 				
-				<!--  l'libro originale -->
+				<!--  libro originale -->
 				<c:set var="itemOld" scope="request" value="${libroOld}" />
-				<!--  gli attuali valori dell'libro originale -->
+				<!--  gli attuali valori del libro originale -->
 				<c:set var="idOld" value="${itemOld.id}" />
-				<c:set var="codiceOld" value="${itemOld.codice}" />
-				<c:set var="descrizioneOld" value="${itemOld.descrizione}" />
-				<c:set var="prezzoOld" value="${itemOld.prezzo}" />
+				<c:set var="titoloOld" value="${itemOld.titolo}" />
+				<c:set var="tramaOld" value="${itemOld.trama}" />
+				<c:set var="genereOld" value="${itemOld.genere}" />
 				<c:set var="autoreOld" value="${itemOld.autore}" />
 
-				<!--  l'libro da aggiornare -->
+				<!--  libro da aggiornare -->
 				<c:set var="itemNew" scope="request" value="${libroNew}" />
-				<!--  i valori input utente per l'libro da aggiornare -->
-				<c:set var="codiceNew" value="${itemNew.codice}" />
-				<c:set var="descrizioneNew" value="${itemNew.descrizione}" />
-				<c:set var="prezzoNew" value="${itemNew.prezzo}" />
+				<!--  valori input utente per il libro da aggiornare -->
+				<c:set var="titoloNew" value="${itemNew.titolo}" />
+				<c:set var="tramaNew" value="${itemNew.trama}" />
+				<c:set var="genereNew" value="${itemNew.genere}" />
 				<c:set var="autoreNew" value="${itemNew.autore}" />
 				
 				<input type="hidden" name="idLib" id="idLib" value="${idOld}">
-				<input type="hidden" name="codice" id="codice" value="${codiceNew}">
-				<input type="hidden" name="descrizione" id="descrizione" value="${descrizioneNew}">
-				<input type="hidden" name="prezzo" id="prezzo" value="${prezzoNew}">
+				<input type="hidden" name="titolo" id="titolo" value="${titoloNew}">
+				<input type="hidden" name="trama" id="trama" value="${tramaNew}">
+				<input type="hidden" name="genere" id="genere" value="${genereNew}">
 				<input type="hidden" name="idAut" id="idAut" value="${autoreNew.id}">
 
 					<div class='card-body'>
 
 						<dl class="row">
 							<div class="col md-6">
-								<dt class="col-sm-10">Vecchio Codice:</dt>
-								<dd class="col-sm-9 text-center">${codiceOld}</dd>
+								<dt class="col-sm-10">Vecchio Titolo:</dt>
+								<dd class="col-sm-9 text-center">${titoloOld}</dd>
 							</div>
 
 							<div class="col md-6">
-								<dt class="col-sm-10">Nuovo Codice:</dt>
-								<dd class="col-sm-9 text-center">${codiceNew}</dd>
+								<dt class="col-sm-10">Nuovo Titolo:</dt>
+								<dd class="col-sm-9 text-center">${titoloNew}</dd>
 							</div>
 						</dl>
 
 						<dl class="row">
 							<div class="col">
-								<dt class="col-sm-10">Vecchia Descrizione:</dt>
-								<dd class="col-sm-9 text-center">${descrizioneOld}</dd>
+								<dt class="col-sm-10">Vecchia Trama:</dt>
+								<dd class="col-sm-9 text-center">${tramaOld}</dd>
 							</div>
 
 							<div class="col">
-								<dt class="col-sm-10">Nuova Descrizione:</dt>
-								<dd class="col-sm-9 text-center">${descrizioneNew}</dd>
+								<dt class="col-sm-10">Nuova Trama:</dt>
+								<dd class="col-sm-9 text-center">${tramaNew}</dd>
 							</div>
 						</dl>
 
 						<dl class="row">
 							<div class="col">
-								<dt class="col-sm-10">Vecchio Prezzo:</dt>
-								<dd class="col-sm-9 text-center">${prezzoOld}</dd>
+								<dt class="col-sm-10">Vecchio Genere:</dt>
+								<dd class="col-sm-9 text-center">${genereOld}</dd>
 							</div>
 
 							<div class="col">
-								<dt class="col-sm-10">Nuovo Prezzo:</dt>
-								<dd class="col-sm-9 text-center">${prezzoNew}</dd>
+								<dt class="col-sm-10">Nuovo Genere:</dt>
+								<dd class="col-sm-9 text-center">${genereNew}</dd>
 							</div>
 						</dl>
 						
 						<dl class="row">
 							<div class="col">
-								<dt class="col-sm-10">Vecchia Autore:</dt>
-								<dd class="col-sm-9 text-center">${autoreOld}</dd>
+								<dt class="col-sm-10">Vecchio Autore:</dt>
+								<dd class="col-sm-9 text-center">${autoreOld.cognome} ${autoreOld.nome}</dd>
 							</div>
 
 							<div class="col">
-								<dt class="col-sm-10">Nuova Autore:</dt>
-								<dd class="col-sm-9 text-center">${autoreNew}</dd>
+								<dt class="col-sm-10">Nuovo Autore:</dt>
+								<dd class="col-sm-9 text-center">${autoreNew.cognome} ${autoreNew.nome}</dd>
 							</div>
 						</dl>
 						

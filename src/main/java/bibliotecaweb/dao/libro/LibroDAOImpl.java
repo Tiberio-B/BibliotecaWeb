@@ -34,10 +34,10 @@ public class LibroDAOImpl extends GenericDAOImpl<Libro> implements LibroDAO {
 			base += "and l.id = :id";
 		}
 		if (titoloNotNull) {
-			base += "and l.titolo = :titolo ";
+			base += "and l.titolo like :titolo ";
 		}
 		if (tramaNotNull) {
-			base += "and l.trama = :trama ";
+			base += "and l.trama like :trama ";
 		}
 		if (genereNotNull) {
 			base += "and l.genere = :genere ";
@@ -47,10 +47,10 @@ public class LibroDAOImpl extends GenericDAOImpl<Libro> implements LibroDAO {
 			query.setParameter("id", id);
 		}
 		if (titoloNotNull) {
-			query.setParameter("titolo", titolo);
+			query.setParameter("titolo", "%"+titolo+"%");
 		}
 		if (tramaNotNull) {
-			query.setParameter("trama", trama);
+			query.setParameter("trama", "%"+trama+"%");
 		}
 		if (genereNotNull) {
 			query.setParameter("genere", genere);

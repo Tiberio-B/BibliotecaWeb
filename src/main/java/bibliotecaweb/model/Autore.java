@@ -35,7 +35,8 @@ public class Autore {
 	
 	public Autore() {}
 	
-	public Autore(String nome, String cognome, Date ddn, Set<Libro> libri) {
+	public Autore(Long id, String nome, String cognome, Date ddn, Set<Libro> libri) {
+		this.id = id;
 		this.nome = nome;
 		this.cognome = cognome;
 		this.ddn = ddn;
@@ -43,11 +44,15 @@ public class Autore {
 	}
 	
 	public Autore(String nome, String cognome, Date ddn) {
-		this(nome, cognome, ddn, new HashSet<>(0));
+		this(null, nome, cognome, ddn, new HashSet<>(0));
 	}
 
 	public Autore(String nome, String cognome) {
-		this(nome, cognome, null, new HashSet<>(0));
+		this(null, nome, cognome, null, new HashSet<>(0));
+	}
+
+	public Autore(Long id, String nome, String cognome, Set<Libro> libri) {
+		this(id, nome, cognome, null, libri);
 	}
 
 	public Long getId() {

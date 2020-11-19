@@ -48,13 +48,14 @@
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach var="item" items="${requestScope.listaLibri}">
+					<c:forEach var="item" items="${sessionScope.listaLibri}">
 						<tr>
 							<td><c:out value="${item.id}" /></td>
-							<td><c:out value="${item.autore}" /></td>
+							<td><c:out value="${item.autore.cognome} ${item.autore.nome}" /></td>
 							<td><c:out value="${item.titolo}" /></td>
 							<td><c:out value="${item.genere}" /></td>
 							<td><c:out value="${item.trama}" /></td>
+							
 							<td><a class="btn  btn-sm btn-outline-secondary"
 								href="VisualizzaLibroServlet?idParam=${item.id}">Visualizza</a>
 								<a

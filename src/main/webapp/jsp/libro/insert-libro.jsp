@@ -18,7 +18,7 @@
 
 		<div class='card'>
 			<div class='card-header'>
-				<h5>Inserisci nuovo elemento</h5>
+				<h5>Inserisci nuovo Libro</h5>
 			</div>
 			<div class='card-body'>
 
@@ -31,39 +31,48 @@
 
 					<div class="form-row">
 						<div class="form-group col-md-6">
-							<label>Codice <span class="text-danger">*</span></label> <input
-								type="text" name="codice" id="codice" class="form-control"
-								placeholder="Inserire il codice" required>
+							<label>Titolo <span class="text-danger">*</span></label> <input
+								type="text" name="titolo" id="titolo" class="form-control"
+								placeholder="Inserire il titolo" required>
 						</div>
 
 						<div class="form-group col-md-6">
-							<label>Descrizione <span class="text-danger">*</span></label> <input
-								type="text" name="descrizione" id="descrizione"
+							<label>Trama <span class="text-danger">*</span></label> <input
+								type="text" name="trama" id="trama"
 								class="form-control" placeholder="Inserire la descrizione"
 								required>
 						</div>
 					</div>
 
 					<div class="form-row">
-						<div class="form-group col-md-3">
-							<label>Prezzo <span class="text-danger">*</span></label> <input
-								type="number" class="form-control" name="prezzo" id="prezzo"
-								placeholder="Inserire prezzo" required>
+
+						<div class="form-group col-md-6">
+							<label>Genere <span class="text-danger">*</span></label> <select
+								class="browser-default custom-select" name="genere">
+
+								<option value="-1">Seleziona un genere...</option>
+
+								<c:forEach var="genere" items="${sessionScope.listaGeneri}">
+									<option value="${genere.name()}">${genere.name()}</option>
+								</c:forEach>
+							</select>
 						</div>
 
 						<div class="form-group col-md-6">
-							
-								<label>Autore <span class="text-danger">*</span></label>
-								<select class="browser-default custom-select" name="idAut">
-								
-									<option value="-1">Seleziona una autore...</option>
-										
-										<c:forEach var="autore" items="${requestScope.listaAutori}">
-									<option value="${autore.id}">${autore.nome}</option>
-									</c:forEach>
-								</select>
-							
+
+							<label>Autore <span class="text-danger">*</span></label> <select
+								class="browser-default custom-select" name="idAut">
+
+								<option value="-1">Seleziona un autore...</option>
+
+								<c:forEach var="autore" items="${sessionScope.listaAutori}">
+									<option value="${autore.id}">${autore.cognome}
+										${autore.nome}</option>
+								</c:forEach>
+							</select>
+
 						</div>
+
 					</div>
 
 					<button type="submit" name="submit" value="submit" id="submit"

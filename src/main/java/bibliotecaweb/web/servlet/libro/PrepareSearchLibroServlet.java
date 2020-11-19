@@ -14,9 +14,10 @@ import javax.servlet.http.HttpServletResponse;
 import bibliotecaweb.model.Autore;
 import bibliotecaweb.model.Libro;
 import bibliotecaweb.service.MyServiceFactory;
+import bibliotecaweb.web.servlet.MyAbstractServlet;
 
 @WebServlet("/PrepareSearchLibroServlet")
-public class PrepareSearchLibroServlet extends HttpServlet {
+public class PrepareSearchLibroServlet extends MyAbstractServlet {
 	private static final long serialVersionUID = 1L;
 
 	public PrepareSearchLibroServlet() {
@@ -26,19 +27,7 @@ public class PrepareSearchLibroServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		List<Autore> autori = null;
-		try {
-			autori = MyServiceFactory.getAutoreServiceInstance().elenca();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		// Collections.sort(autori);
-		request.setAttribute("autori", autori);
-		
-		
-		Libro.Genere[] generi = Libro.Genere.values();
-		Arrays.sort(generi);
-		request.setAttribute("generi", generi);
+		updateLibriEAutoriInSession(request);
 
 		request.getRequestDispatcher("jsp/libro/search-libro.jsp").forward(request, response);
 

@@ -30,7 +30,7 @@ public class Libro {
 	@Enumerated(EnumType.STRING)
 	private Genere genere;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "autore_id")
 	private Autore autore;
 	
@@ -50,6 +50,10 @@ public class Libro {
 
 	public Libro(String titolo, String trama, Genere genere, Autore autore) {
 		this(null, titolo, trama, genere, autore);
+	}
+
+	public Libro(Long id, String titolo, String trama, Genere genere) {
+		this(id, titolo, trama, genere, null);
 	}
 
 	public Long getId() {

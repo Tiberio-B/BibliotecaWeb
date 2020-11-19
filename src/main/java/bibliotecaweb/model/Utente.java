@@ -128,13 +128,19 @@ public class Utente {
 		MyServiceFactory.getUtenteServiceInstance().aggiungi(this, ruolo);
 	}
 
-	public Object isGuest() {
-		// TODO Auto-generated method stub
-		return null;
+	public boolean isGuest() {
+		Ruolo guest = new Ruolo(Ruolo.Codice.GUEST_ROLE);
+		for (Ruolo ruolo : ruoli) {
+			if (ruolo.equals(guest)) { return true; }
+		}
+		return false;
 	}
 
 	public boolean isAdmin() {
-		// TODO Auto-generated method stub
+		Ruolo admin = new Ruolo(Ruolo.Codice.ADMIN_ROLE);
+		for (Ruolo ruolo : ruoli) {
+			if (ruolo.equals(admin)) { return true; }
+		}
 		return false;
 	}
 	

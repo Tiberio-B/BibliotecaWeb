@@ -22,16 +22,19 @@ public class PrepareDeleteAutoreServlet extends MyAbstractServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		Long id = Long.parseLong(request.getParameter("id"));
-		// ottiene la autore da idAut
+		Long idAut = validateID(request, "idAut");
+		if (idAut < 0) {
+			request.getRequestDispatcher("BackToAutoriServlet").forward(request, response);
+		}
+		
+		// ottiene l'autore da idAut
 		Autore autore = null;
 		try {
-			autore = MyServiceFactory.getAutoreServiceInstance().carica(id);
+			autore = MyServiceFactory.getAutoreServiceInstance().carica(idAut);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		request.setAttribute("autoreAttr", autore);
-		request.setAttribute("listaAutori", request.getParameter("listaAutori"));
+		request.setAttribute("autore", autore);
 
 		//andiamo ai risultati
 		request.getRequestDispatcher("jsp/autore/delete-autore.jsp").forward(request, response);

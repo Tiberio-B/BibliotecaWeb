@@ -35,10 +35,10 @@ public class AutoreDAOImpl extends GenericDAOImpl<Autore> implements AutoreDAO {
 			base += "and a.id = :id ";
 		}
 		if (nomeNotNull) {
-			base += "and a.nome = :nome ";
+			base += "and a.nome like :nome ";
 		}
 		if (cognomeNotNull) {
-			base += "and a.cognome = :cognome ";
+			base += "and a.cognome like :cognome ";
 		}
 		if (ddnNotNull) {
 			base += "and a.ddn = :ddn ";
@@ -48,10 +48,10 @@ public class AutoreDAOImpl extends GenericDAOImpl<Autore> implements AutoreDAO {
 			query.setParameter("id", id);
 		}
 		if (nomeNotNull) {
-			query.setParameter("nome", nome);
+			query.setParameter("nome", "%"+nome+"%");
 		}
 		if (cognomeNotNull) {
-			query.setParameter("cognome", cognome);
+			query.setParameter("cognome", "%"+cognome+"%");
 		}
 		if (ddnNotNull) {
 			query.setParameter("ddn", ddn);

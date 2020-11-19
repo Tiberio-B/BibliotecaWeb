@@ -50,10 +50,10 @@ public class ExecuteSearchLibroServlet extends HttpServlet {
 		List<Libro> libri = null;
 		try {
 			libri = MyServiceFactory.getLibroServiceInstance().cerca(libro);
-			request.setAttribute("listaLibri", libri);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		request.getSession().setAttribute("listaLibri", libri);
 		request.setAttribute("searched", true);
 		request.getRequestDispatcher("jsp/libro/libri.jsp").forward(request, response);
 	}

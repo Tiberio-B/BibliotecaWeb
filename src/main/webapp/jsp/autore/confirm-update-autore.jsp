@@ -20,22 +20,25 @@
 
 			<div class='card'>
 				<div class='card-header'>
-					Sei sicuro di voler modificare in questo modo la autore?
+					Sei sicuro di voler modificare in questo modo l'autore?
 				</div>
 				
-				<!--  l'libro originale -->
+				<!--  autore originale -->
 				<c:set var="itemOld" scope="request" value="${autoreOld}" />
-				<!--  gli attuali valori dell'libro originale -->
+				<!--  attuali valori dell'autore originale -->
 				<c:set var="idVar" value="${itemOld.id}" />
 				<c:set var="nomeOld" value="${itemOld.nome}" />
+				<c:set var="cognomeOld" value="${itemOld.cognome}" />
 
-				<!--  l'libro da aggiornare -->
+				<!--  autore da aggiornare -->
 				<c:set var="itemNew" scope="request" value="${autoreNew}" />
-				<!--  i valori input utente per l'libro da aggiornare -->
+				<!--  valori input utente per l'libro da aggiornare -->
 				<c:set var="nomeNew" value="${itemNew.nome}" />
+				<c:set var="cognomeNew" value="${itemNew.cognome}" />
 				
 				<input type="hidden" name="idAut" id="idAut" value="${idVar}">
 				<input type="hidden" name="nomeNew" id="nomeNew" value="${nomeNew}">
+				<input type="hidden" name="cognomeNew" id="cognomeNew" value="${cognomeNew}">
 
 					<div class='card-body'>
 
@@ -48,6 +51,18 @@
 							<div class="col md-6">
 								<dt class="col-sm-3 text-center">Nuovo Nome:</dt>
 								<dd class="col-sm-9">${nomeNew}</dd>
+							</div>
+						</dl>
+						
+						<dl class="row">
+							<div class="col md-6">
+								<dt class="col-sm-3 text-center">Vecchio Cogome:</dt>
+								<dd class="col-sm-9">${cognomeOld}</dd>
+							</div>
+
+							<div class="col md-6">
+								<dt class="col-sm-3 text-center">Nuovo Cogome:</dt>
+								<dd class="col-sm-9">${cognomeNew}</dd>
 							</div>
 						</dl>
 						

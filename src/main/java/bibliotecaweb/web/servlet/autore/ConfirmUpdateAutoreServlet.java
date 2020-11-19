@@ -26,18 +26,20 @@ public class ConfirmUpdateAutoreServlet extends MyAbstractServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		String ids = request.getParameter("validId");
-		Long idOld = Long.parseLong(ids);
+		Long idOld = validateID(request, "idAut");
+		String nome = validateStringParam(request, "nome");
+		String cognome = validateStringParam(request, "cognome");
 		
 		// conserva l'autore in autoreOld prima della modifica
+		Autore autoreOld = null;
 		try {
-			Autore autoreOld = MyServiceFactory.getAutoreServiceInstance().carica(idOld);
+			autoreOld = MyServiceFactory.getAutoreServiceInstance().carica(idOld);
 			request.setAttribute("autoreOld", autoreOld);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		// request.setAttribute("autoreNew", new Autore(idOld, nome));
+		request.setAttribute("autoreNew", new Autore(idOld, nome, cognome, autoreOld.getLibri()));
 
 		request.getRequestDispatcher("jsp/autore/confirm-update-autore.jsp").forward(request, response);
 	}

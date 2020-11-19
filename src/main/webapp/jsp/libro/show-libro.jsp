@@ -17,35 +17,35 @@
 		
 		<div class='card'>
 		    <div class='card-header'>
-		        Visualizza dettaglio
+		        Dettaglio Libro
 		    </div>
 		    
 		    <div class='card-body'>
 		    <c:set var="item" scope="request" value="${libroAttr}"/>
 		    	<dl class="row">
-				  <dt class="col-sm-3 text-right">Codice:</dt>
-				  <dd class="col-sm-9">${item.codice}</dd>
-		    	</dl>
-		    	
-		    	<dl class="row">
-				  <dt class="col-sm-3 text-right">Descrizione:</dt>
-				  <dd class="col-sm-9"> ${item.descrizione}</dd>
-		    	</dl>
-		    	
-		    	<dl class="row">
-				  <dt class="col-sm-3 text-right">Prezzo:</dt>
-				  <dd class="col-sm-9"> ${item.prezzo}</dd>
-		    	</dl>
-		    	
-		    	<dl class="row">
 				  <dt class="col-sm-3 text-right">Autore:</dt>
-				  <dd class="col-sm-9"> ${item.autore}</dd>
+				  <dd class="col-sm-9">${item.autore.cognome} ${item.autore.nome}</dd>
+		    	</dl>
+		    	
+		    	<dl class="row">
+				  <dt class="col-sm-3 text-right">Titolo:</dt>
+				  <dd class="col-sm-9"> ${item.titolo}</dd>
+		    	</dl>
+		    	
+		    	<dl class="row">
+				  <dt class="col-sm-3 text-right">Genere:</dt>
+				  <dd class="col-sm-9"> ${item.genere}</dd>
+		    	</dl>
+		    	
+		    	<dl class="row">
+				  <dt class="col-sm-3 text-right">Trama:</dt>
+				  <dd class="col-sm-9"> ${item.trama}</dd>
 		    	</dl>
 		    	
 		    </div>
 		    
 		    <div class='card-footer'>
-		        <a href="ListLibriServlet" class='btn btn-outline-secondary' style='width:100px'>
+		        <a href="BackToLibriServlet" class='btn btn-outline-secondary' style='width:100px'>
 		            <i class='fa fa-chevron-left'></i> Indietro
 		        </a>
 		        

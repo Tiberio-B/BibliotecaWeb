@@ -1,6 +1,7 @@
 package bibliotecaweb.service.utente;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.EntityManager;
 
@@ -9,7 +10,9 @@ import bibliotecaweb.dao.IBaseDAO;
 import bibliotecaweb.dao.utente.UtenteDAO;
 import bibliotecaweb.model.Ruolo;
 import bibliotecaweb.model.Utente;
+import bibliotecaweb.model.Utente.Stato;
 import bibliotecaweb.service.GenericServiceImpl;
+import bibliotecaweb.service.MyServiceFactory;
 
 public class UtenteServiceImpl extends GenericServiceImpl<Utente> implements UtenteService {
 
@@ -57,5 +60,17 @@ public class UtenteServiceImpl extends GenericServiceImpl<Utente> implements Ute
 		} finally {
 			entityManager.close();
 		}
+	}
+
+	@Override
+	public List<Utente> cerca(String nomeInput, String cognomeInput, String usernameInput,
+			String statoInput, String[] ruoliIdInput) throws Exception {
+		String cognome = cognomeInput.isEmpty() ? null : cognomeInput;
+		String nome = nomeInput.isEmpty() ? null : nomeInput;
+		String username = usernameInput.isEmpty() ? null : usernameInput;
+		Utente.Stato stato = statoInput.isEmpty() ? null : Stato.valueOf(statoInput);	
+		Set<Ruolo> ruoli = MyServiceFactory.getRuoloServiceInstance().carica(ruoliIdInput);
+		Utente utente = new Utente(nome, cognome, username, stato, ruoli);
+		return MyServiceFactory.getUtenteServiceInstance().cerca(utente);
 	}
 }

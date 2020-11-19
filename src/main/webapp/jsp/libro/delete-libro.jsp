@@ -20,27 +20,27 @@
 		        Sei sicuro di voler eliminare il seguente libro?
 		    </div>
 		    
-		    <c:set var="item" scope="request" value="${libroAttr}"/>
+		    <c:set var="item" scope="request" value="${libro}"/>
 		    
 		    <div class='card-body'>
 		    	<dl class="row">
-				  <dt class="col-sm-3 text-right">Codice:</dt>
-				  <dd class="col-sm-9">${item.codice}</dd>
+				  <dt class="col-sm-3 text-right">Titolo:</dt>
+				  <dd class="col-sm-9">${item.titolo}</dd>
 		    	</dl>
 		    	
 		    	<dl class="row">
-				  <dt class="col-sm-3 text-right">Descrizione:</dt>
-				  <dd class="col-sm-9">${item.descrizione}</dd>
+				  <dt class="col-sm-3 text-right">Trama:</dt>
+				  <dd class="col-sm-9">${item.trama}</dd>
 		    	</dl>
 		    	
 		    	<dl class="row">
-				  <dt class="col-sm-3 text-right">Prezzo:</dt>
-				  <dd class="col-sm-9">${item.prezzo}</dd>
+				  <dt class="col-sm-3 text-right">Genere:</dt>
+				  <dd class="col-sm-9">${item.genere.name()}</dd>
 		    	</dl>
 		    	
 		    	<dl class="row">
 				  <dt class="col-sm-3 text-right">Autore:</dt>
-				  <dd class="col-sm-9">${item.autore}</dd>
+				  <dd class="col-sm-9">${item.autore.cognome} ${item.autore.nome}</dd>
 		    	</dl>
 		    	
 		    </div>
@@ -54,7 +54,7 @@
 		            <i class='fa fa-chevron-left'></i> Modifica
 		        </a>
 		        
-		        <a href="DeleteLibroServlet?idParam=${item.id}" class='btn btn-outline-secondary btn-outline-danger' style='width:100px'>
+		        <a href="ExecuteDeleteLibroServlet?idParam=${item.id}" class='btn btn-outline-secondary btn-outline-danger' style='width:100px'>
 		            <i class='fa fa-chevron-left'></i> Conferma
 		        </a>
 		    </div>

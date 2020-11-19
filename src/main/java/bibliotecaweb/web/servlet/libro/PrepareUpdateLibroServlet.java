@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import bibliotecaweb.model.Autore;
 import bibliotecaweb.model.Libro;
+import bibliotecaweb.model.Libro.Genere;
 import bibliotecaweb.service.MyServiceFactory;
 import bibliotecaweb.web.servlet.MyAbstractServlet;
 
@@ -27,15 +28,12 @@ public class PrepareUpdateLibroServlet extends MyAbstractServlet {
 		long idOld = Long.parseLong(request.getParameter("idParam"));
 		
 		Libro libroOld = null;
-		List<Autore> autori = null;
 		try {
 			libroOld = MyServiceFactory.getLibroServiceInstance().carica(idOld);
-			autori = MyServiceFactory.getAutoreServiceInstance().elenca();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		request.setAttribute("libroOld", libroOld);
-		request.setAttribute("listaAutori", autori);
 
 		request.getRequestDispatcher("jsp/libro/update-libro.jsp").forward(request, response);
 

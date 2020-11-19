@@ -2,7 +2,7 @@
 <html lang="it">
 <head>
 	<jsp:include page="../header.jsp" />
-	<title>Cerca una Autore</title>
+	<title>Cerca un Autore</title>
 	
 	<!-- style per le pagine diverse dalla index -->
     <link href="./assets/css/global.css" rel="stylesheet">
@@ -17,7 +17,7 @@
 		
 		<div class='card'>
 		    <div class='card-header'>
-		        <h5>Cerca una Autore</h5> 
+		        <h5>Cerca un Autore</h5> 
 		    </div>
 		    <div class='card-body'>
 
@@ -37,7 +37,6 @@
 						</div>
 							
 						<button type="submit" name="submit" value="submit" id="submit" class="btn btn-primary">Conferma</button>
-					
 
 					</form>
 			<!-- end card-body -->			   

@@ -56,6 +56,24 @@ public class Ruolo {
 		this.descrizione = descrizione;
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((codice == null) ? 0 : codice.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) { return true; }
+		if (obj == null) { return false; }
+		if (getClass() != obj.getClass()) { return false; }
+		Ruolo ruolo = (Ruolo) obj;
+		if (codice != ruolo.codice) { return false; }
+		return true;
+	}
+
 	public enum Codice {
 		ADMIN_ROLE,
 		CLASSIC_ROLE,

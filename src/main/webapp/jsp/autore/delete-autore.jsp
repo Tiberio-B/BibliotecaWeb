@@ -17,20 +17,26 @@
 		
 		<div class='card'>
 		    <div class='card-header'>
-		        Sei sicuro di voler eliminare la seguente autore?
+		        Sei sicuro di voler eliminare il seguente autore?
 		    </div>
 		    
 		    <!-- 
 		    <c:set var="listaAutori" scope="request" value="${requestScope.listaAutori}" />
 		     -->
 		    
-		    <c:set var="item" scope="request" value="${autoreAttr}"/>
+		    <c:set var="item" scope="request" value="${autore}"/>
 		    
 		    <div class='card-body'>
 		    	<dl class="row">
 				  <dt class="col-sm-3 text-right">Nome:</dt>
 				  <dd class="col-sm-9">${item.nome}</dd>
 		    	</dl>
+		    	
+		    	<dl class="row">
+				  <dt class="col-sm-3 text-right">Cognome:</dt>
+				  <dd class="col-sm-9">${item.cognome}</dd>
+		    	</dl>
+		    	
 		    </div>
 		    
 		    <div class='card-footer'>

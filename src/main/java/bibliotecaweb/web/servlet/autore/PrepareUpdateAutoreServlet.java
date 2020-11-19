@@ -22,8 +22,10 @@ public class PrepareUpdateAutoreServlet extends MyAbstractServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		Long idOld = Long.parseLong(request.getParameter("id"));
-		
+		Long idOld = validateID(request, "idAut");
+		if (idOld < 0) {
+			request.getRequestDispatcher("jsp/autore/autori.jsp").forward(request, response);
+		}
 		// ottiene la autore da idOld
 		Autore autoreOld = null;
 		try {

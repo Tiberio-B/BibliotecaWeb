@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import bibliotecaweb.model.Autore;
 import bibliotecaweb.model.Libro;
+import bibliotecaweb.model.Libro.Genere;
 import bibliotecaweb.service.MyServiceFactory;
 import bibliotecaweb.web.servlet.MyAbstractServlet;
 
@@ -38,13 +39,14 @@ public class ConfirmUpdateLibroServlet extends MyAbstractServlet {
 		}
 		
 		// ottieni le informazioni aggiornate dall'input utente
-		Long idAut = Long.parseLong(request.getParameter("idAut"));
+		Long idAut = validateID(request, "idAut");
 		String titoloInputParam = request.getParameter("titolo");
 		String tramaInputParam = request.getParameter("trama");
 		String genereInputParam = request.getParameter("genere");
+		Genere genere = Genere.valueOf(genereInputParam);
 		
 		
-		// ottieni la autori dall'input utente
+		// ottieni l'autore dall'input utente
 		Autore autore = null;
 		try {
 			autore = MyServiceFactory.getAutoreServiceInstance().carica(idAut);
@@ -52,8 +54,8 @@ public class ConfirmUpdateLibroServlet extends MyAbstractServlet {
 			e.printStackTrace();
 		}
 		
-		// Libro libroNew = new Libro(idOld, titoloInputParam, genereInputParam, tramaInputParam);
-		// request.setAttribute("libroNew", libroNew);
+		Libro libroNew = new Libro(idOld, titoloInputParam, tramaInputParam, genere, autore);
+		request.setAttribute("libroNew", libroNew);
 
 		//andiamo ai risultati
 		request.getRequestDispatcher("jsp/libro/confirm-update-libro.jsp").forward(request, response);

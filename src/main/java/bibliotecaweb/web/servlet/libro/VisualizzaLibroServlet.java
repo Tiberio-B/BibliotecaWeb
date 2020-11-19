@@ -22,17 +22,19 @@ public class VisualizzaLibroServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		Long idLib = 0L;
-		// ottiene l'libro da idLib
-		Libro libro = null;
-		try {
-			libro = MyServiceFactory.getLibroServiceInstance().carica(idLib);
-		} catch (Exception e) {
-			e.printStackTrace();
+		String idParam = request.getParameter("idParam");
+		Long id = idParam.isEmpty() ? null : Long.parseLong(idParam);
+		
+		if (id != null) {
+			Libro libro = null;
+			try {
+				libro = MyServiceFactory.getLibroServiceInstance().carica(id);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			request.setAttribute("libroAttr", libro);
 		}
-		request.setAttribute("libroAttr", libro);
-
-		//andiamo ai risultati
+		
 		request.getRequestDispatcher("jsp/libro/show-libro.jsp").forward(request, response);
 	}
 
