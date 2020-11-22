@@ -22,6 +22,6 @@ public interface GenericService<T> {
 	public void inserisci(T instance) throws Exception;
 
 	public void rimuovi(T instance) throws Exception;
-	
-	public List<T> trovaDa(T instance) throws Exception;
+
+	public void rimuovi(Long id) throws Exception;
 }

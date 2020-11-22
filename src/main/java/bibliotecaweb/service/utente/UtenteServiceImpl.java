@@ -7,10 +7,8 @@ import javax.persistence.EntityManager;
 
 import bibliotecaweb.dao.EntityManagerUtil;
 import bibliotecaweb.dao.IBaseDAO;
-import bibliotecaweb.dao.utente.UtenteDAO;
 import bibliotecaweb.model.Ruolo;
 import bibliotecaweb.model.Utente;
-import bibliotecaweb.model.Utente.Stato;
 import bibliotecaweb.service.GenericServiceImpl;
 import bibliotecaweb.service.MyServiceFactory;
 
@@ -40,37 +38,52 @@ public class UtenteServiceImpl extends GenericServiceImpl<Utente> implements Ute
 	}
 
 	@Override
-	public List<Utente> trovaDa(Utente instance) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+	public Utente cerca(String username, String password, Utente.Stato stato) throws Exception {
+		Utente instance = new Utente(username, password, stato);
+		List<Utente> ret = cerca(instance);
+		if (ret.isEmpty()) { return null; }
+		else { return ret.get(0); }
+//		EntityManager entityManager = EntityManagerUtil.getEntityManager();
+//		try {
+//			UtenteDAO dao = (UtenteDAO) getDAO();
+//			dao.setEntityManager(entityManager);
+//			List<Utente> ret = dao.find(username, password, stato);
+//			if (ret.isEmpty()) { return null; }
+//			else { return ret.get(0); }
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//			throw e;
+//		} finally {
+//			entityManager.close();
+//		}
 	}
 
 	@Override
-	public Utente trova(String username, String password, Utente.Stato stato) throws Exception {
+	public List<Utente> cerca(String nome, String cognome, String username, Utente.Stato stato, String[] ruoliIdInput) throws Exception {
+		Set<Ruolo> ruoli = MyServiceFactory.getRuoloServiceInstance().carica(ruoliIdInput);
+		Utente instance = new Utente(nome, cognome, username, stato, ruoli);
+		return MyServiceFactory.getUtenteServiceInstance().cerca(instance);
+	}
+
+	@Override
+	public boolean rimozioneLogica(Long idUt) throws Exception {
+		boolean eraAttivo = false;
 		EntityManager entityManager = EntityManagerUtil.getEntityManager();
 		try {
-			UtenteDAO dao = (UtenteDAO) getDAO();
+			entityManager.getTransaction().begin();
+			
+			IBaseDAO<Utente> dao = getDAO();
 			dao.setEntityManager(entityManager);
-			List<Utente> ret = dao.find(username, password, stato);
-			if (ret.isEmpty()) { return null; }
-			else { return ret.get(0); }
+			Utente utente = dao.get(idUt);
+			eraAttivo = utente.disattiva();
+			utente = entityManager.merge(utente);
+			
+			entityManager.getTransaction().commit();
 		} catch (Exception e) {
+			entityManager.getTransaction().rollback();
 			e.printStackTrace();
 			throw e;
-		} finally {
-			entityManager.close();
 		}
-	}
-
-	@Override
-	public List<Utente> cerca(String nomeInput, String cognomeInput, String usernameInput,
-			String statoInput, String[] ruoliIdInput) throws Exception {
-		String cognome = cognomeInput.isEmpty() ? null : cognomeInput;
-		String nome = nomeInput.isEmpty() ? null : nomeInput;
-		String username = usernameInput.isEmpty() ? null : usernameInput;
-		Utente.Stato stato = statoInput.isEmpty() ? null : Stato.valueOf(statoInput);	
-		Set<Ruolo> ruoli = MyServiceFactory.getRuoloServiceInstance().carica(ruoliIdInput);
-		Utente utente = new Utente(nome, cognome, username, stato, ruoli);
-		return MyServiceFactory.getUtenteServiceInstance().cerca(utente);
+		return eraAttivo;
 	}
 }

@@ -26,8 +26,7 @@
 
 <div class='card'>
 	<div class='card-header'>
-		<h5>Tutti i Libri${filtered==true? ' di ': ''} ${autore}
-			${searched==true? ' che soddisfano i parametri della ricerca': ''}</h5>
+		<h5>Tutti i Libri${searched==true? ' che soddisfano i parametri della ricerca': ''}</h5>
 	</div>
 	<div class='card-body'>
 		<a class="btn btn-primary ${sessionScope.cannotInsert?'disabled':''}"
@@ -48,7 +47,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach var="item" items="${sessionScope.listaLibri}">
+					<c:forEach var="item" items="${requestScope.libri}">
 						<tr>
 							<td><c:out value="${item.id}" /></td>
 							<td><c:out value="${item.autore.cognome} ${item.autore.nome}" /></td>
@@ -57,13 +56,13 @@
 							<td><c:out value="${item.trama}" /></td>
 							
 							<td><a class="btn  btn-sm btn-outline-secondary"
-								href="VisualizzaLibroServlet?idParam=${item.id}">Visualizza</a>
+								href="VisualizzaLibroServlet?idLib=${item.id}">Visualizza</a>
 								<a
 								class="btn  btn-sm btn-outline-primary ml-2 mr-2 ${sessionScope.cannotUpdate?'disabled':''}"
-								href="PrepareUpdateLibroServlet?idParam=${item.id}"
+								href="PrepareUpdateLibroServlet?idLib=${item.id}"
 								aria-disabled="${sessionScope.cannotUpdate}">Modifica</a> <a
 								class="btn btn-outline-danger btn-sm ${sessionScope.cannotDelete?'disabled':''}"
-								href="PrepareDeleteLibroServlet?idParam=${item.id}"
+								href="PrepareDeleteLibroServlet?idLib=${item.id}"
 								aria-disabled="${sessionScope.cannotDelete}">Rimuovi</a></td>
 						</tr>
 					</c:forEach>

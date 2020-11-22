@@ -23,6 +23,7 @@
 		    <!-- 
 		    <c:set var="listaAutori" scope="request" value="${requestScope.listaAutori}" />
 		     -->
+		     
 		    
 		    <c:set var="item" scope="request" value="${autore}"/>
 		    
@@ -48,7 +49,7 @@
 		            <i class='fa fa-chevron-left'></i> Modifica
 		        </a>
 		        
-		        <a href="DeleteAutoreServlet?idAut=${item.id}" class='btn btn-outline-secondary btn-outline-danger' style='width:100px'>
+		        <a href="ExecuteDeleteAutoreServlet?idAut=${item.id}" class='btn btn-outline-secondary btn-outline-danger' style='width:100px'>
 		            <i class='fa fa-chevron-left'></i> Conferma
 		        </a>
 		    </div>

@@ -20,13 +20,6 @@ public class UtenteDAOImpl extends GenericDAOImpl<Utente> implements UtenteDAO {
 	public String getTName() {
 		return "Utente";
 	}
-	
-	@Override
-	public List<Utente> find(String username, String password, Utente.Stato stato) {	
-		TypedQuery<Utente> query = entityManager.createQuery("from Utente u where u.username=:username and u.password=:password and u.stato=:stato", Utente.class);
-	    query.setParameter("username", username).setParameter("password", password).setParameter("stato", stato);
-	    return query.getResultList();
-	}
 
 	@Override
 	public List<Utente> find(Utente instance) {
@@ -34,18 +27,20 @@ public class UtenteDAOImpl extends GenericDAOImpl<Utente> implements UtenteDAO {
 		Set<Ruolo> ruoli = instance.getRuoli();
 		boolean ruoliNotNull = ruoli != null && !ruoli.isEmpty();
 		if (ruoliNotNull) {
-			base += "JOIN u.ruoli r ";
+			base += "JOIN FETCH u.ruoli r ";
 		}
 		base += "WHERE 1=1 ";
 		Long id = instance.getId();
 		String nome = instance.getNome();
 		String cognome = instance.getCognome();
 		String username = instance.getUsername();
+		String password = instance.getPassword();
 		Utente.Stato stato = instance.getStato();
 		boolean idNotNull = id != null;
 		boolean nomeNotNull = nome != null;
 		boolean cognomeNotNull = cognome != null;
 		boolean usernameNotNull = username != null;
+		boolean passwordNotNull = password != null;
 		boolean statoNotNull = stato != null;
 		if (idNotNull) {
 			base += "AND u.id = :id ";
@@ -58,6 +53,9 @@ public class UtenteDAOImpl extends GenericDAOImpl<Utente> implements UtenteDAO {
 		}
 		if (usernameNotNull) {
 			base += "AND u.username = :username ";
+		}
+		if (passwordNotNull) {
+			base += "AND u.password = :password ";
 		}
 		if (statoNotNull) {
 			base += "AND u.stato = :stato ";
@@ -82,6 +80,9 @@ public class UtenteDAOImpl extends GenericDAOImpl<Utente> implements UtenteDAO {
 		if (usernameNotNull) {
 			query.setParameter("username", username);
 		}
+		if (passwordNotNull) {
+			query.setParameter("password", password);
+		}
 		if (statoNotNull) {
 			query.setParameter("stato", stato);
 		}
@@ -92,5 +93,14 @@ public class UtenteDAOImpl extends GenericDAOImpl<Utente> implements UtenteDAO {
 		}
 	    return query.getResultList();
 	}
+	
+//	@Override
+//	public List<Utente> find(String username, String password, Utente.Stato stato) {
+//		Utente instance = new Utente(username, password, stato);
+//		return find(instance);
+////		TypedQuery<Utente> query = entityManager.createQuery("from Utente u where u.username=:username and u.password=:password and u.stato=:stato", Utente.class);
+////	    query.setParameter("username", username).setParameter("password", password).setParameter("stato", stato);
+////	    return query.getResultList();
+//	}
 
 }

@@ -40,14 +40,14 @@
 		                    </tr>
 		                </thead>
 		                <tbody>
-		                	<c:forEach var = "item" items ="${requestScope.listaAutori}">
+		                	<c:forEach var = "item" items ="${requestScope.autori}">
 		                    <tr >
 		                        <td><c:out value = "${item.id}"/></td>
 		                        <td><c:out value = "${item.nome}"/></td>
 		                        <td><c:out value = "${item.cognome}"/></td>
 		                        <td><c:out value = "${item.ddn}"/></td>
 		                        <td>
-									<a class="btn  btn-sm btn-outline-secondary" href="VisualizzaAutoreServlet?idAut=${item.id}">Visualizza</a>
+									<a class="btn  btn-sm btn-outline-secondary" href="VisualizzaAutoreServlet?idAut=${item.id}">Visualizza Libri</a>
 									<a class="btn  btn-sm btn-outline-primary ml-2 mr-2 ${sessionScope.cannotUpdate?'disabled':''}" href="PrepareUpdateAutoreServlet?idAut=${item.id}" aria-disabled="${sessionScope.cannotUpdate}">Modifica</a>
 									<a class="btn btn-outline-danger btn-sm ${sessionScope.cannotDelete?'disabled':''}" href="PrepareDeleteAutoreServlet?idAut=${item.id}"  aria-disabled="${sessionScope.cannotDelete}">Rimuovi</a>
 								</td>

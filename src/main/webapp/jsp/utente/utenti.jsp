@@ -30,7 +30,7 @@
 	</div>
 	<div class='card-body'>
 		<a class="btn btn-primary ${sessionScope.cannotInsert?'disabled':''}"
-			href="PrepareInsertLibroServlet"
+			href="PrepareInsertUtenteServlet"
 			aria-disabled="${sessionScope.cannotInsert}">Inserisci nuovo
 			Utente</a>
 
@@ -48,7 +48,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach var="item" items="${requestScope.listaUtenti}">
+					<c:forEach var="item" items="${requestScope.utenti}">
 						<tr>
 							<td><c:out value="${item.id}" /></td>
 							<td><c:out value="${item.nome}" /></td>
@@ -56,18 +56,18 @@
 							<td><c:out value="${item.username}" /></td>
 							<td><c:out value="${item.stato}" /></td>
 							<td>
-								<c:forEach var="ruolo" items="${item.getRuoli()}">
+							<c:forEach var="ruolo" items="${item.getRuoli()}">
 								<c:out value="${ruolo.codice}" />
 							</c:forEach>
 							</td>
 							<td><a class="btn  btn-sm btn-outline-secondary"
-								href="VisualizzaUtenteServlet?idParam=${item.id}">Visualizza</a>
+								href="VisualizzaUtenteServlet?idUt=${item.id}">Visualizza</a>
 								<a
 								class="btn  btn-sm btn-outline-primary ml-2 mr-2 ${sessionScope.cannotUpdate?'disabled':''}"
-								href="PrepareUpdateUtenteServlet?idParam=${item.id}"
+								href="PrepareUpdateUtenteServlet?idUt=${item.id}"
 								aria-disabled="${sessionScope.cannotUpdate}">Modifica</a> <a
 								class="btn btn-outline-danger btn-sm ${sessionScope.cannotDelete?'disabled':''}"
-								href="PrepareDeleteUtenteServlet?idParam=${item.id}"
+								href="PrepareDeleteUtenteServlet?idUt=${item.id}"
 								aria-disabled="${sessionScope.cannotDelete}">Rimuovi</a></td>
 						</tr>
 					</c:forEach>

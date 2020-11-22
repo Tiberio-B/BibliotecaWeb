@@ -30,7 +30,7 @@ public class Autore {
 	@Column(name = "ddn")
 	private Date ddn;
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "autore")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "autore")
 	private Set<Libro> libri = new HashSet<>(0);
 	
 	public Autore() {}

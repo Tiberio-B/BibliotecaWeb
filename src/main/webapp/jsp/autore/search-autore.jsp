@@ -24,14 +24,19 @@
 					<form method="post" action="ExecuteSearchAutoreServlet" novalidate="novalidate">
 					
 						<div class="form-row">
-							<div class="form-group col-md-6">
+							<div class="form-group col-md-4">
 								<label>Cognome</label>
-								<input type="text" name="cognome" id="cognome" class="form-control" placeholder="Inserire il cognome" required>
+								<input type="text" name="cognome" id="cognome" class="form-control" placeholder="Inserire il cognome" value="${param.cognome}" required>
 							</div>
 							
-							<div class="form-group col-md-6">
+							<div class="form-group col-md-4">
 								<label>Nome</label>
-								<input type="text" name="nome" id="nome" class="form-control" placeholder="Inserire il nome" required>
+								<input type="text" name="nome" id="nome" class="form-control" placeholder="Inserire il nome" value="${param.nome}" required>
+							</div>
+							
+							<div class="form-group col-md-4">
+								<label>Data di Nascita</label>
+								<input type="text" name="ddn" id="ddn" class="form-control" placeholder="Inserire la data di nascita" value="${param.ddn}" required>
 							</div>
 							
 						</div>

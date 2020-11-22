@@ -11,6 +11,7 @@
 
 -->
 
+<c:forEach var="errorMessage" items="${errorMessages}">
 <div
 	class="alert alert-danger alert-dismissible fade show ${errorMessage==null?'d-none': ''}"
 	role="alert">
@@ -20,3 +21,4 @@
 		<span aria-hidden="true">&times;</span>
 	</button>
 </div>
+</c:forEach>

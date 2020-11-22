@@ -29,13 +29,13 @@
 						<div class="form-group col-md-6">
 							<label>Titolo</label> <input
 								type="text" name="titolo" id="titolo" class="form-control"
-								placeholder="Inserire il titolo" required>
+								placeholder="Inserire il titolo" value="${param.titolo}" required>
 						</div>
 
 						<div class="form-group col-md-6">
 							<label>Trama</label> <input
 								type="text" name="trama" id="trama"
-								class="form-control" placeholder="Inserire la trama"
+								class="form-control" placeholder="Inserire la trama" value="${param.trama}"
 								required>
 						</div>
 					</div>
@@ -46,10 +46,10 @@
 								<label>Genere</label>
 								<select class="browser-default custom-select" name="genere">
 								
-									<option value="">Seleziona un genere...</option>
+									<option value="empty">Seleziona un genere...</option>
 										
-										<c:forEach var="genere" items="${sessionScope.listaGeneri}">
-											<option value="${genere.name()}">${genere.name()}</option>
+										<c:forEach var="genere" items="${requestScope.generi}">
+											<option value="${genere}">${genere}</option>
 										</c:forEach>
 								</select>
 							
@@ -62,7 +62,7 @@
 								
 									<option value="-1">Seleziona un autore...</option>
 										
-										<c:forEach var="autore" items="${sessionScope.listaAutori}">
+										<c:forEach var="autore" items="${requestScope.autori}">
 											<option value="${autore.id}">${autore.cognome} ${autore.nome}</option>
 										</c:forEach>
 								</select>

@@ -47,25 +47,31 @@ public class Utente {
 	
 	public Utente() {}
 	
-	public Utente(String nome, String cognome, String username, String password, Set<Ruolo> ruoli, Stato stato) {
+	public Utente(Long id, String nome, String cognome, String username, String password, Stato stato, Set<Ruolo> ruoli) {
+		this.id = id;
 		this.nome = nome;
 		this.cognome = cognome;
 		this.username = username;
 		this.password = password;
-		this.ruoli = ruoli;
 		this.stato = stato;
+		this.ruoli = ruoli;
 	}
 	
 	public Utente(String nome, String cognome, String username) {
-		this(nome, cognome, username, "password", new HashSet<>(0), Stato.NON_ATTIVO);
+		this(null, nome, cognome, username, "password", Stato.NON_ATTIVO, new HashSet<>(0));
 	}
 
 	public Utente(String username, String password, Stato stato) {
-		this(null, null, username, password, new HashSet<>(0), Stato.NON_ATTIVO);
+		this(null, null, null, username, password, Stato.NON_ATTIVO, new HashSet<>(0));
 	}
 
-	public Utente(String nome, String cognome, String username, Stato stato, Set<Ruolo> ruoli) {
-		this(nome, cognome, username, null, ruoli, stato);
+	public Utente(Long id, String nome, String cognome, String username, Stato stato, Set<Ruolo> ruoli) {
+		this(null, nome, cognome, username, null, stato, ruoli);
+	}
+
+	public Utente(String nome, String cognome, String username, Stato stato,
+			Set<Ruolo> ruoli) {
+		this(null, nome, cognome, username, stato, ruoli);
 	}
 
 	public Long getId() {
@@ -142,6 +148,12 @@ public class Utente {
 			if (ruolo.equals(admin)) { return true; }
 		}
 		return false;
+	}
+	
+	public boolean disattiva() {
+		boolean eraAttivo = stato == Stato.ATTIVO;
+		stato = Stato.NON_ATTIVO;
+		return eraAttivo;
 	}
 	
 	@Override

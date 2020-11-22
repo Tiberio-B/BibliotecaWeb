@@ -10,9 +10,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import bibliotecaweb.model.Libro;
 import bibliotecaweb.service.MyServiceFactory;
+import bibliotecaweb.web.servlet.AbstractUtilityServlet;
 
 @WebServlet("/VisualizzaLibroServlet")
-public class VisualizzaLibroServlet extends HttpServlet {
+public class VisualizzaLibroServlet extends AbstractUtilityServlet {
 	private static final long serialVersionUID = 1L;
 
 	public VisualizzaLibroServlet() {
@@ -22,18 +23,27 @@ public class VisualizzaLibroServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		String idParam = request.getParameter("idParam");
-		Long id = idParam.isEmpty() ? null : Long.parseLong(idParam);
+		boolean addError = true; // parametri null in visualizzazione costituiscono errore
 		
-		if (id != null) {
-			Libro libro = null;
-			try {
-				libro = MyServiceFactory.getLibroServiceInstance().carica(id);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			request.setAttribute("libroAttr", libro);
+		// i parametri vuoti/invalidi vengono valorizzati a null
+		Long id = validateLongParam(request, "idLib", addError);
+		
+		// se almeno uno dei parametri obbligatori è vuoto/invalido, reindirizzamento con messaggio di errore appropriato
+		if (id == null) {
+			request.getRequestDispatcher("BackToLibriServlet").forward(request, response);
+			return;
 		}
+		
+		Libro libro = null;
+		try { // ottieni libro corrispondente ad id
+			libro = MyServiceFactory.getLibroServiceInstance().carica(id);
+		} catch (Exception e) {
+			e.printStackTrace();
+			addError(request, "Impossibile accedere al libro desiderato.");
+			request.getRequestDispatcher("BackToLibriServlet").forward(request, response);
+			return;
+		}
+		request.setAttribute("libro", libro);
 		
 		request.getRequestDispatcher("jsp/libro/show-libro.jsp").forward(request, response);
 	}

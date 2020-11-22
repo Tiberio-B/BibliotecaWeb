@@ -1,0 +1,5 @@
+ERRORI DA SISTEMARE
+
+I Campi EAGER vanno caricati in JOIN FETCH dai rispettivi DAO
+
+ENUMERATIVI in RICERCA non OBBLIGATORI, in INSERISCI Sì

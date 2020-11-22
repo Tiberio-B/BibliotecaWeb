@@ -48,7 +48,7 @@ public class LoginServlet extends HttpServlet {
 		
 		Utente utente = null;
 		try {
-			utente = MyServiceFactory.getUtenteServiceInstance().trova(username, password, stato);
+			utente = MyServiceFactory.getUtenteServiceInstance().cerca(username, password, stato);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -60,8 +60,8 @@ public class LoginServlet extends HttpServlet {
 		}
 		HttpSession sess = request.getSession();
 		sess.setAttribute("utente", utente);
-		sess.setAttribute("cannotInsert", (utente.isGuest()));
-		sess.setAttribute("cannotUpdate", (utente.isGuest()));
+		sess.setAttribute("cannotInsert", utente.isGuest());
+		sess.setAttribute("cannotUpdate", utente.isGuest());
 		sess.setAttribute("cannotDelete", !(utente.isAdmin()));
 		
 		request.getRequestDispatcher("jsp/home.jsp").forward(request, response);

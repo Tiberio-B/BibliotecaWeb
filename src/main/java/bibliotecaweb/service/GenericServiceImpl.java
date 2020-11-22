@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 
 import bibliotecaweb.dao.EntityManagerUtil;
 import bibliotecaweb.dao.IBaseDAO;
+import bibliotecaweb.model.Autore;
 
 public abstract class GenericServiceImpl<T> implements GenericService<T> {
 	
@@ -85,6 +86,22 @@ public abstract class GenericServiceImpl<T> implements GenericService<T> {
 		try {
 			entityManager.getTransaction().begin();
 			tDAO.setEntityManager(entityManager);
+			tDAO.delete(instance);
+			entityManager.getTransaction().commit();
+		} catch (Exception e) {
+			entityManager.getTransaction().rollback();
+			e.printStackTrace();
+			throw e;
+		}
+	}
+	
+	@Override
+	public void rimuovi(Long id) throws Exception {
+		EntityManager entityManager = EntityManagerUtil.getEntityManager();
+		try {
+			entityManager.getTransaction().begin();
+			tDAO.setEntityManager(entityManager);
+			T instance = tDAO.get(id);
 			tDAO.delete(instance);
 			entityManager.getTransaction().commit();
 		} catch (Exception e) {

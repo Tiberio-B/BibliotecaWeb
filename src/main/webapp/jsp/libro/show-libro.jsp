@@ -21,7 +21,7 @@
 		    </div>
 		    
 		    <div class='card-body'>
-		    <c:set var="item" scope="request" value="${libroAttr}"/>
+		    <c:set var="item" value="${requestScope.libro}"/>
 		    	<dl class="row">
 				  <dt class="col-sm-3 text-right">Autore:</dt>
 				  <dd class="col-sm-9">${item.autore.cognome} ${item.autore.nome}</dd>
@@ -49,11 +49,11 @@
 		            <i class='fa fa-chevron-left'></i> Indietro
 		        </a>
 		        
-		        <a href="PrepareUpdateLibroServlet?idParam=${item.id}" class='btn btn-outline-primary ml-2 mr-2' style='width:100px'>
+		        <a href="PrepareUpdateLibroServlet?idLib=${item.id}" class='btn btn-outline-primary ml-2 mr-2' style='width:100px'>
 		            <i class='fa fa-chevron-left'></i> Modifica
 		        </a>
 		        
-		        <a href="RimuoviServlet?idParam=${item.id}" class='btn btn-outline-secondary btn-outline-danger' style='width:100px'>
+		        <a href="PrepareDeleteLibroServlet?idLib=${item.id}" class='btn btn-outline-secondary btn-outline-danger' style='width:100px'>
 		            <i class='fa fa-chevron-left'></i> Rimuovi
 		        </a>
 		    </div>

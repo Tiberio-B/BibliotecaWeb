@@ -64,9 +64,9 @@
 		                        <td><c:out value = "${item.descrizione}"/> <!-- %=item.getId() %--></td>
 		                        <td><c:out value = "${item.prezzo}"/> <!-- %=item.getId() %--></td>
 		                        <td>
-									<a class="btn  btn-sm btn-outline-secondary" href="VisualizzaServlet?idParam=${item.id}">Visualizza</a>
-									<a class="btn  btn-sm btn-outline-primary ml-2 mr-2" href="PrepareUpdateLibroServlet?idParam=${item.id}">Modifica</a>
-									<a class="btn btn-outline-danger btn-sm" href="PrepareDeleteServlet?idParam=${item.id}">Rimuovi</a>
+									<a class="btn  btn-sm btn-outline-secondary" href="VisualizzaAutoreServlet?idAut=${item.id}">Visualizza</a>
+									<a class="btn  btn-sm btn-outline-primary ml-2 mr-2" href="PrepareUpdateAutoreServlet?idAut=${item.id}">Modifica</a>
+									<a class="btn btn-outline-danger btn-sm" href="PrepareDeleteAutoreServlet?idAut=${item.id}">Rimuovi</a>
 								</td>
 		                    </tr>
 		                    </c:forEach>

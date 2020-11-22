@@ -20,6 +20,9 @@
           <a class="dropdown-item" href="ListAutoriServlet">Tutte gli Autori</a> -->
           <a class="dropdown-item" href="PrepareSearchLibroServlet">Cerca Libro</a>
           <a class="dropdown-item" href="PrepareSearchAutoreServlet">Cerca Autore</a>
+          <c:if test="${sessionScope.utente.isAdmin()}">
+          <a class="dropdown-item" href="PrepareSearchUtenteServlet">Gestione Utente</a>
+          </c:if>
            <!-- <a class="dropdown-item" href="LogoutServlet">Logout</a>  -->
         </div>
       </li>

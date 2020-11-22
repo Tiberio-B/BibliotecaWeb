@@ -62,9 +62,9 @@ public class BibliotecaWebTest {
 
 	public static void initLibri(int numLibri) throws Exception {
 		for (int l = 0; l < numLibri; l++) {
-			Libro lib = new Libro(r.cvcvcv(), r.genereCasuale(), "trama");
-			libroService.inserisci(lib);
-			System.out.println("Libro appena creato: " + lib);
+			// Libro lib = new Libro(r.cvcvcv(), r.genereCasuale(), "trama");
+			// libroService.inserisci(lib);
+			// System.out.println("Libro appena creato: " + lib);
 		}
 		libri = libroService.elenca();
 	}
@@ -108,7 +108,7 @@ public class BibliotecaWebTest {
 		String uUsername = utente.getUsername();
 		String uPassword = utente.getPassword();
 		Utente.Stato uStato = utente.getStato();
-		System.out.println(MyServiceFactory.getUtenteServiceInstance().trova(uUsername, uPassword, uStato));
+		// System.out.println(MyServiceFactory.getUtenteServiceInstance().trova(uUsername, uPassword, uStato));
 	}
 	
 	public static void feedback() {

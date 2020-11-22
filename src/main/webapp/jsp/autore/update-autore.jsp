@@ -36,16 +36,22 @@
 						value="${old.id}">
 
 					<div class="form-row">
-						<div class="form-group col-md-6">
+						<div class="form-group col-md-4">
 							<label>Nome <span class="text-danger">*</span></label> <input
 								type="text" name="nome" id="nome" class="form-control"
 								placeholder="Inserire il nome" value="${old.nome}" required>
 						</div>
 					
-						<div class="form-group col-md-6">
+						<div class="form-group col-md-4">
 							<label>Cogome <span class="text-danger">*</span></label> <input
 								type="text" name="cognome" id="cognome" class="form-control"
 								placeholder="Inserire il cognome" value="${old.cognome}" required>
+						</div>
+						
+						<div class="form-group col-md-4">
+							<label>Data di Nascita <span class="text-danger">*</span></label> <input
+								type="text" name="ddn" id="ddn" class="form-control"
+								placeholder="Inserire la data di nascita" value="${old.ddn}" required>
 						</div>
 					</div>
 

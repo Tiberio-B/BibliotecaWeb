@@ -57,8 +57,10 @@
 
 								<option value="${old.genere}">${old.genere.name()}</option>
 
-								<c:forEach var="genere" items="${sessionScope.listaGeneri}">
-									<option value="${genere.name()}">${genere.name()}</option>
+								<c:forEach var="genere" items="${requestScope.generi}">
+									<c:if test="${genere != old.genere }">
+									<option value="${genere}">${genere}</option>
+									</c:if>
 								</c:forEach>
 							</select>
 						</div>
@@ -80,8 +82,9 @@
 									${old.autore.nome}</option>
 
 								<c:forEach var="autore" items="${sessionScope.listaAutori}">
-									<option value="${autore.id}">${autore.cognome}
-										${autore.nome}</option>
+									<c:if test="${autore != old.autore }">
+									<option value="${autore.id}">${autore.cognome} ${autore.nome}</option>
+									</c:if>
 								</c:forEach>
 							</select>
 
@@ -100,7 +103,7 @@
 				<a href="ListLibriServlet" class='btn btn-outline-secondary'
 					style='width: 100px'> <i class='fa fa-chevron-left'></i>
 					Indietro
-				</a> <a href="PrepareDeleteLibroServlet?idParam=${old.id}"
+				</a> <a href="PrepareDeleteLibroServlet?idLib=${old.id}"
 					class='btn btn-outline-secondary btn-outline-danger'
 					style='width: 100px'> <i class='fa fa-chevron-left'></i>
 					Rimuovi

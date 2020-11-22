@@ -11,12 +11,6 @@ import bibliotecaweb.service.MyServiceFactory;
 public class RuoloServiceImpl extends GenericServiceImpl<Ruolo> implements RuoloService {
 
 	@Override
-	public List<Ruolo> trovaDa(Ruolo instance) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public Set<Ruolo> carica(String[] ruoliIdInput) throws Exception {
 		Long[] ids = null;
 		if (ruoliIdInput != null) {

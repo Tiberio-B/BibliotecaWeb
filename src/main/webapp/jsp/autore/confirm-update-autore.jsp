@@ -29,16 +29,19 @@
 				<c:set var="idVar" value="${itemOld.id}" />
 				<c:set var="nomeOld" value="${itemOld.nome}" />
 				<c:set var="cognomeOld" value="${itemOld.cognome}" />
+				<c:set var="ddnOld" value="${itemOld.ddn}" />
 
 				<!--  autore da aggiornare -->
 				<c:set var="itemNew" scope="request" value="${autoreNew}" />
-				<!--  valori input utente per l'libro da aggiornare -->
+				<!--  valori input utente per l'autore da aggiornare -->
 				<c:set var="nomeNew" value="${itemNew.nome}" />
 				<c:set var="cognomeNew" value="${itemNew.cognome}" />
+				<c:set var="ddnNew" value="${itemNew.ddn}" />
 				
 				<input type="hidden" name="idAut" id="idAut" value="${idVar}">
 				<input type="hidden" name="nomeNew" id="nomeNew" value="${nomeNew}">
 				<input type="hidden" name="cognomeNew" id="cognomeNew" value="${cognomeNew}">
+				<input type="hidden" name="ddnNew" id="ddnNew" value="${ddnNew}">
 
 					<div class='card-body'>
 
@@ -63,6 +66,18 @@
 							<div class="col md-6">
 								<dt class="col-sm-3 text-center">Nuovo Cogome:</dt>
 								<dd class="col-sm-9">${cognomeNew}</dd>
+							</div>
+						</dl>
+						
+						<dl class="row">
+							<div class="col md-6">
+								<dt class="col-sm-3 text-center">Vecchia Data di Nascita:</dt>
+								<dd class="col-sm-9">${ddnOld}</dd>
+							</div>
+
+							<div class="col md-6">
+								<dt class="col-sm-3 text-center">Nuova Data di Nascita:</dt>
+								<dd class="col-sm-9">${ddnNew}</dd>
 							</div>
 						</dl>
 						

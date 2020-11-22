@@ -3,7 +3,7 @@
 <head>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <jsp:include page="../header.jsp" />
-<title>Cerca una Autore</title>
+<title>Cerca un Utente</title>
 
 <!-- style per le pagine diverse dalla index -->
 <link href="./assets/css/global.css" rel="stylesheet">
@@ -50,7 +50,7 @@
 							<label>Stato Utente</label> <select
 								class="browser-default custom-select" name="stato">
 
-								<option value="">Seleziona uno stato utente...</option>
+								<option value="empty">Seleziona uno stato utente...</option>
 
 								<c:forEach var="stato" items="${requestScope.stati}">
 									<option value="${stato.name()}">${stato.name()}</option>

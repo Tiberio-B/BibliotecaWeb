@@ -50,11 +50,11 @@
 		            <i class='fa fa-chevron-left'></i> Indietro
 		        </a>
 		        
-		        <a href="PrepareUpdateLibroServlet?idParam=${item.id}" class='btn btn-outline-primary ml-2 mr-2' style='width:100px'>
+		        <a href="PrepareUpdateLibroServlet?idLib=${item.id}" class='btn btn-outline-primary ml-2 mr-2' style='width:100px'>
 		            <i class='fa fa-chevron-left'></i> Modifica
 		        </a>
 		        
-		        <a href="ExecuteDeleteLibroServlet?idParam=${item.id}" class='btn btn-outline-secondary btn-outline-danger' style='width:100px'>
+		        <a href="ExecuteDeleteLibroServlet?idLib=${item.id}" class='btn btn-outline-secondary btn-outline-danger' style='width:100px'>
 		            <i class='fa fa-chevron-left'></i> Conferma
 		        </a>
 		    </div>

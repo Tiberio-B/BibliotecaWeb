@@ -99,7 +99,7 @@
 					</div>
 
 					<div class='card-footer'>
-						<a href="PrepareUpdateLibroServlet?idParam=${idOld}"
+						<a href="PrepareUpdateLibroServlet?idLib=${idOld}"
 							class='btn btn-outline-secondary' style='width: 100px'> <i
 							class='fa fa-chevron-left'></i> Indietro
 						</a>
@@ -108,7 +108,7 @@
 							Conferma
 						</button>
 
-						<a href="PrepareDeleteServlet?idParam=${idOld}"
+						<a href="PrepareDeleteLibroServlet?idLib=${idOld}"
 							class='btn btn-outline-secondary btn-outline-danger'
 							style='width: 100px'> <i class='fa fa-chevron-left'></i>
 							Rimuovi

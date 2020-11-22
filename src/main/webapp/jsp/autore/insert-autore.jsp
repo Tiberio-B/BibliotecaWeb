@@ -2,7 +2,7 @@
 <html lang="it">
 <head>
 	<jsp:include page="../header.jsp" />
-	<title>Inserisci nuovo</title>
+	<title>Inserisci Autore</title>
 	
 	<!-- style per le pagine diverse dalla index -->
     <link href="./assets/css/global.css" rel="stylesheet">
@@ -17,7 +17,7 @@
 		
 		<div class='card'>
 		    <div class='card-header'>
-		        <h5>Inserisci nuova Autore</h5> 
+		        <h5>Inserisci nuovo Autore</h5> 
 		    </div>
 		    <div class='card-body'>
 
@@ -26,15 +26,24 @@
 					<form name="myForm" method="post" action="ExecuteInsertAutoreServlet" novalidate="novalidate">
 					
 						<div class="form-row">
-							<div class="form-group col-md-6">
+							<div class="form-group col-md-4">
 								<label>Nome <span class="text-danger">*</span></label>
-								<input type="text" name="nome" id="nome" class="form-control" placeholder="Inserire il nome" required>
+								<input type="text" name="nome" id="nome" class="form-control" placeholder="Inserire il nome" value="${param.nome}" required>
+							</div>
+							
+							<div class="form-group col-md-4">
+								<label>Cognome <span class="text-danger">*</span></label>
+								<input type="text" name="cognome" id="cognome" class="form-control" placeholder="Inserire il cognome" value="${param.cognome}" required>
+							</div>
+							
+							<div class="form-group col-md-4">
+								<label>Data di Nascita <span class="text-danger">*</span></label>
+								<input type="text" name="ddn" id="ddn" class="form-control" placeholder="Inserire la data di nascita" value="${param.ddn}" required>
 							</div>
 							
 						</div>
 							
 						<button type="submit" name="submit" value="submit" id="submit" class="btn btn-primary">Conferma</button>
-					
 
 					</form>
 			<!-- end card-body -->			   

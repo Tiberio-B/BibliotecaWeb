@@ -6,9 +6,13 @@ import javax.persistence.EntityManager;
 
 import bibliotecaweb.dao.EntityManagerUtil;
 import bibliotecaweb.dao.IBaseDAO;
+import bibliotecaweb.dao.libro.LibroDAO;
+import bibliotecaweb.dao.utente.UtenteDAO;
 import bibliotecaweb.model.Autore;
 import bibliotecaweb.model.Libro;
+import bibliotecaweb.model.Utente;
 import bibliotecaweb.service.GenericServiceImpl;
+import bibliotecaweb.service.MyServiceFactory;
 
 public class LibroServiceImpl extends GenericServiceImpl<Libro> implements LibroService {
 
@@ -40,10 +44,38 @@ public class LibroServiceImpl extends GenericServiceImpl<Libro> implements Libro
 		}
 		return ret;
 	}
-
+	
 	@Override
-	public List<Libro> trovaDa(Libro instance) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Libro> cerca(Libro instance) throws Exception {
+		EntityManager entityManager = EntityManagerUtil.getEntityManager();
+		try {
+			LibroDAO dao = (LibroDAO) getDAO();
+			dao.setEntityManager(entityManager);
+			return dao.find(instance);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		} finally {
+			entityManager.close();
+		}
 	}
+	
+	@Override
+	public List<Libro> cerca(String titolo, String trama, Libro.Genere genere, Long idAutore) throws Exception {
+		Autore autore = null;
+		if (idAutore != null) { // se è stato specificato un autore
+			autore = MyServiceFactory.getAutoreServiceInstance().carica(idAutore); // ottieni l'autore dal database
+		} 
+		Libro instance = new Libro(titolo, trama, genere, autore); // istanza temporanea per la ricerca
+		return MyServiceFactory.getLibroServiceInstance().cerca(instance); // effettua la ricerca sul database
+	}
+	
+//	@Override
+//	public List<Libro> cerca(Long idAutore) throws Exception {		
+//		Autore autore = MyServiceFactory.getAutoreServiceInstance().carica(idAutore); // ottiene l'autore specificato da idAutore
+//		Libro libro = new Libro(); // genera un libro-esempio per l'autore
+//		libro.setAutore(autore);	
+//		List<Libro> libri = cerca(libro); // ottiene tutti i libri dell'autore
+//		return libri;
+//	}
 }
