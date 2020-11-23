@@ -53,6 +53,13 @@ public class ExecuteSearchUtenteServlet extends AbstractUtilityServlet {
 			return;
 		}
 		
+		if (utenti.isEmpty()) {
+			addError(request, "Nessun utente presente nella biblioteca soddisfa i parameri di ricerca specificati.");
+			initUtenteAttributes(request);
+			request.getRequestDispatcher("jsp/utente/search-utente.jsp").forward(request, response);
+			return;
+		}
+		
 		request.setAttribute("utenti", utenti);
 		request.setAttribute("searched", true);
 		request.getRequestDispatcher("jsp/utente/utenti.jsp").forward(request, response);

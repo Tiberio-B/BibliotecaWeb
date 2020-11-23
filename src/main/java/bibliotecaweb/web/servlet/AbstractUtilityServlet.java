@@ -65,7 +65,7 @@ public abstract class AbstractUtilityServlet extends HttpServlet {
 	   * @see HttpServletRequest
 	   */
 	public static <T extends Enum<T>> T validateEnumParam(HttpServletRequest request, String enumParamName, Class<T> enumType, boolean addError) {
-		String enumParam = validateStringParam(request, enumParamName, addError);
+		String enumParam = validateStringParam(request, enumParamName, false);
 		T enumVar = null;
 		try {
 			enumVar = Enum.valueOf(enumType, enumParam);
@@ -110,12 +110,14 @@ public abstract class AbstractUtilityServlet extends HttpServlet {
 	public static Date validateDateParam(HttpServletRequest request, String dateParamName, boolean addError) {
 		Date date = null;
 		try {
+			System.out.println(request.getParameter(dateParamName));
 			String[] stringParams = request.getParameter(dateParamName).split("-");
 			Integer[] params = new Integer[3];
 			for (int i = 0; i < 3; i++) {
 				params[i] = Integer.valueOf(stringParams[i]);
+				System.out.println(stringParams[i] +"\n"+ params[i]);
 			}
-			date = new Date(params[2] - 1900, params[1] - 1, params[0]);
+			date = new Date(params[2], params[1] - 1, params[0]);
 		} catch (IllegalArgumentException | NullPointerException e) {
 			if (addError) { 
 				addError(request, "Il campo '"+ dateParamName +"' deve essere una data espressa nel formato gg-mm-aaaa.");

@@ -20,13 +20,13 @@ public class BackToUtentiServlet extends AbstractUtilityServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		updateUtentiInSession(request);
+		initUtenteAttributes(request);
 		request.getRequestDispatcher("jsp/utente/utenti.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		updateUtentiInSession(request);
+		initUtenteAttributes(request);
 		request.getRequestDispatcher("jsp/utente/utenti.jsp").forward(request, response);
 	}
 

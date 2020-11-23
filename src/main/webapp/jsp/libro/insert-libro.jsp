@@ -7,6 +7,37 @@
 
 <!-- style per le pagine diverse dalla index -->
 <link href="./assets/css/global.css" rel="stylesheet">
+<script src="${pageContext.request.contextPath}/assets/js/jquery-3.4.1.min.js"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.min.js"></script>
+    <script>
+    $().ready(function() {
+    	  $("#form").validate({
+    	    rules: {
+                titolo: {
+                    required: true
+            },
+    	       trama: {
+                    required: true
+            },
+    	       genere: {
+                    required: true
+            }
+                autore: {
+                    required: true
+    	    },
+    	    messages: {
+                titolo: "Inserire il titolo",
+                trama: "Inserire la trama",
+                genere: "Inserire il genere",
+                autore: "Inserire l'autore"
+    	    },
+    	    submitHandler: function(form) {
+    	      form.submit();
+    	    }
+    	  });
+    	});
+    
+    </script>
 
 </head>
 <body>
@@ -48,7 +79,7 @@
 
 						<div class="form-group col-md-6">
 							<label>Genere <span class="text-danger">*</span></label> <select
-								class="browser-default custom-select" name="genere">
+								class="browser-default custom-select" name="genere" value="${param.genere}">
 
 								<option value="">Seleziona un genere...</option>
 
@@ -61,9 +92,9 @@
 						<div class="form-group col-md-6">
 
 							<label>Autore <span class="text-danger">*</span></label> <select
-								class="browser-default custom-select" name="idAut">
+								class="browser-default custom-select" name="idAut" value="${param.autore}">
 
-								<option value="-1">Seleziona un autore...</option>
+								<option value="">Seleziona un autore...</option>
 
 								<c:forEach var="autore" items="${requestScope.autori}">
 									<option value="${autore.id}">${autore.cognome}

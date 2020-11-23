@@ -16,22 +16,20 @@ import bibliotecaweb.model.Utente;
  * Servlet Filter implementation class VerifyLoginFilter
  */
 @WebFilter(urlPatterns = {"/blabla"})
-public class VerifyLoginFilter implements Filter {
-	
-	private String path;
+public class ClassicPriviledgesFilter implements Filter {
 
     /**
      * Default constructor. 
      */
-    public VerifyLoginFilter() {
+    public ClassicPriviledgesFilter() {
         // TODO Auto-generated constructor stub
     }
-	
+
 	/**
-	 * @see Filter#init(FilterConfig)
+	 * @see Filter#destroy()
 	 */
-	public void init(FilterConfig fConfig) throws ServletException {
-		this.path = fConfig.getServletContext().getContextPath();
+	public void destroy() {
+		// TODO Auto-generated method stub
 	}
 
 	/**
@@ -49,15 +47,22 @@ public class VerifyLoginFilter implements Filter {
 			req.getRequestDispatcher(path + "/index.jsp").forward(req, response);
 			return;
 		}
+		
+		// se l'utente non e' amministratore, torna alla login
+		if(!utente.isAdmin()) {
+			req.setAttribute("errorMessage", "Devi aver effettuato l'accesso come Amministratore per visualizzare questa pagina.");
+			req.getRequestDispatcher(path + "/index.jsp").forward(req, response);
+			return;
+		}
 
 		// pass the request along the filter chain
 		chain.doFilter(req, response);
 	}
-	
+
 	/**
-	 * @see Filter#destroy()
+	 * @see Filter#init(FilterConfig)
 	 */
-	public void destroy() {
+	public void init(FilterConfig fConfig) throws ServletException {
 		// TODO Auto-generated method stub
 	}
 

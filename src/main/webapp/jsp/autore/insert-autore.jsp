@@ -6,6 +6,34 @@
 	
 	<!-- style per le pagine diverse dalla index -->
     <link href="./assets/css/global.css" rel="stylesheet">
+    <script src="${pageContext.request.contextPath}/assets/js/jquery-3.4.1.min.js"></script>
+	<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.min.js"></script>
+    
+    <script>
+    $(document).ready(function() {
+        $("#submit").validate({
+            rules : {
+                nome : {
+                  required : true
+                },
+                cognome : {
+                    required : true,
+                },
+                ddn : {
+                	required : true
+                }
+            },
+            messages: {
+                nome: "Nome non valido",
+                cognome: "Cognome non valido",
+                ddn: "Data di nascita non valida"
+            },
+            submitHandler: function(form) {
+                form.submit();
+            }
+        });
+    });
+    </script>
     
 </head>
 <body>
@@ -23,7 +51,7 @@
 
 					<h6 class="card-title">I campi con <span class="text-danger">*</span> sono obbligatori</h6>
 
-					<form name="myForm" method="post" action="ExecuteInsertAutoreServlet" novalidate="novalidate">
+					<form name="form" id="form" method="post" action="ExecuteInsertAutoreServlet" novalidate="novalidate">
 					
 						<div class="form-row">
 							<div class="form-group col-md-4">
@@ -37,8 +65,8 @@
 							</div>
 							
 							<div class="form-group col-md-4">
-								<label>Data di Nascita <span class="text-danger">*</span></label>
-								<input type="text" name="ddn" id="ddn" class="form-control" placeholder="Inserire la data di nascita" value="${param.ddn}" required>
+								<label>Data di Nascita (gg-mm-aaaa)<span class="text-danger">*</span></label>
+								<input type="date" name="ddn" id="ddn" class="form-control" placeholder="Inserire la data di nascita" value="${param.ddn}" required>
 							</div>
 							
 						</div>

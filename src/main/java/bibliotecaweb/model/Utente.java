@@ -150,6 +150,14 @@ public class Utente {
 		return false;
 	}
 	
+	public boolean isClassic() {
+		Ruolo admin = new Ruolo(Ruolo.Codice.CLASSIC_ROLE);
+		for (Ruolo ruolo : ruoli) {
+			if (ruolo.equals(admin)) { return true; }
+		}
+		return false;
+	}
+	
 	public boolean disattiva() {
 		boolean eraAttivo = stato == Stato.ATTIVO;
 		stato = Stato.NON_ATTIVO;

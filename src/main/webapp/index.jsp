@@ -40,6 +40,7 @@
 	  
 	  <!-- Custom styles for this template -->
 	  <link href="./assets/css/signin.css" rel="stylesheet">
+	  <script src="jquery-3.4.1.min.js"></script>
 	</head>
 	<body class="text-center">
 		

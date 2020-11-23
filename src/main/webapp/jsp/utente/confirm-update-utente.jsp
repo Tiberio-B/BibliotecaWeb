@@ -29,6 +29,7 @@
 				<c:set var="idOld" value="${itemOld.id}" />
 				<c:set var="nomeOld" value="${itemOld.nome}" />
 				<c:set var="cognomeOld" value="${itemOld.cognome}" />
+				<c:set var="usernameOld" value="${itemOld.username}" />
 				<c:set var="statoOld" value="${itemOld.stato}" />
 				<c:set var="ruoliOld" value="${itemOld.ruoli}" />
 

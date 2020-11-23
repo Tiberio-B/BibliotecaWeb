@@ -8,6 +8,35 @@
 
 <!-- style per le pagine diverse dalla index -->
 <link href="./assets/css/global.css" rel="stylesheet">
+ <script src="${pageContext.request.contextPath}/assets/js/jquery-3.4.1.min.js"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.min.js"></script>
+    
+    <script>
+    
+    $().ready(function() {
+        $("#form").validate({
+            rules : {
+                nome : {
+                  required : true
+                },
+                cognome : {
+                    required : true,
+                },
+                ddn : {
+                	required : true
+                }
+            },
+            messages: {
+                nome: "Nome non valido",
+                cognome: "Cognome non valido",
+                ddn: "Data di nascita non valida"
+            },
+            submitHandler: function(form) {
+                form.submit();
+            }
+        });
+    });
+    </script>
 
 </head>
 <body>
@@ -50,7 +79,7 @@
 						
 						<div class="form-group col-md-4">
 							<label>Data di Nascita <span class="text-danger">*</span></label> <input
-								type="text" name="ddn" id="ddn" class="form-control"
+								type="date" name="ddn" id="ddn" class="form-control"
 								placeholder="Inserire la data di nascita" value="${old.ddn}" required>
 						</div>
 					</div>

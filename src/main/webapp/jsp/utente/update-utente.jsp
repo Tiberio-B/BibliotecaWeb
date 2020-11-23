@@ -8,6 +8,41 @@
 
 <!-- style per le pagine diverse dalla index -->
 <link href="./assets/css/global.css" rel="stylesheet">
+<script src="${pageContext.request.contextPath}/assets/js/jquery-3.4.1.min.js"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.min.js"></script>
+    <script>
+    $().ready(function() {
+          $("#form").validate({
+            rules: {
+                nome: {
+                    required: true
+            },
+               cognome {
+                    required: true
+            },
+               username: {
+                    required: true
+            },
+                stato: {
+                    required: true
+            },
+                ruoli: {
+                    requried: true
+            }
+            messages: {
+                nome: "Inserire il nome",
+                cognome: "Inserire il cognome",
+                username: "Inserire lo username",
+                stato: "Inserire lo stato",
+                ruoli: "Inserire i ruoli"
+            },
+            submitHandler: function(form) {
+              form.submit();
+            }
+          });
+        });
+    
+    </script>
 
 </head>
 <body>
@@ -36,19 +71,19 @@
 						value="${old.id}">
 
 					<div class="form-row">
-						<div class="form-group col-md-3">
+						<div class="form-group col-md-4">
 							<label>Nome <span class="text-danger">*</span></label> <input
 								type="text" name="nome" id="nome" class="form-control"
 								placeholder="Inserire il nome" value="${old.nome}" required>
 						</div>
 
-						<div class="form-group col-md-3">
+						<div class="form-group col-md-4">
 							<label>Cognome <span class="text-danger">*</span></label> <input
 								type="text" name="cognome" id="cognome" class="form-control"
 								placeholder="Inserire il cognome" value="${old.cognome}" required>
 						</div>
 						
-						<div class="form-group col-md-3">
+						<div class="form-group col-md-4">
 							<label>Username <span class="text-danger">*</span></label> <input
 								type="text" name="username" id="username" class="form-control"
 								placeholder="Inserire lo username" value="${old.username}" required>
@@ -72,7 +107,7 @@
 						<div class="form-group col-md-6">
 							<label>Ruolo Utente</label> 
 
-								<c:forEach var="ruolo" items="${sessionScope.listaRuoli}">
+								<c:forEach var="ruolo" items="${requestScope.ruoli}">
 									<br/>
 									<input type="checkbox" id="ruoliId" name="ruoliId" value="${ruolo.id}">
 									<label for="ruoliId"> ${ruolo.codice.name()}</label>
